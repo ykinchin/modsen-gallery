@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import { baseTheme } from './theme'
 
 export const GlobalStyles = createGlobalStyle`
 * {
@@ -11,5 +12,14 @@ export const GlobalStyles = createGlobalStyle`
 
 html,body {
     height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+        color: ${baseTheme.colors.higlight}
+    }
 }
 `

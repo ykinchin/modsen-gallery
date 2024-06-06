@@ -1,17 +1,21 @@
 import { ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Tab } from './styled'
 
 type Props = {
-	tabIcon: ReactNode
+	tabIcon?: ReactNode
 	tabText: string
+	path: string
 }
 
-const HeaderTab = ({ tabText, tabIcon }: Props) => {
+const HeaderTab = ({ tabText, tabIcon, path }: Props) => {
 	return (
-		<Tab>
-			{tabIcon}
-			{tabText}
-		</Tab>
+		<NavLink to={path}>
+			<Tab>
+				{tabIcon}
+				{tabText}
+			</Tab>
+		</NavLink>
 	)
 }
 
