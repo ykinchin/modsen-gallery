@@ -1,4 +1,4 @@
-import AppLayout from '@components/AppLayout/AppLayout'
+import AppLayout from '@components/AppLayout'
 import { PATHS } from '@constants/routes'
 import FavoritesPage from '@pages/FavoritesPage/FavoritesPage'
 import HomePage from '@pages/HomePage/HomePage'
