@@ -12,7 +12,8 @@ export default defineConfig({
 			'@pages': path.resolve(__dirname, './src/pages'),
 			'@constants': path.resolve(__dirname, './src/constants'),
 			'@assets': path.resolve(__dirname, './src/assets'),
-			'@styles': path.resolve(__dirname, './src/styles')
+			'@styles': path.resolve(__dirname, './src/styles'),
+			'@sharedTypes': path.resolve(__dirname, './src/sharedTypes')
 		}
 	}
 })
