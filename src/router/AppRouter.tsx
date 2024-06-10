@@ -21,7 +21,7 @@ const AppRouter = () => {
 					element={<FavoritesPage />}
 				/>
 				<Route
-					path={PATHS.picture}
+					path={PATHS.artwork}
 					element={<ArtworkPage />}
 				/>
 			</Route>

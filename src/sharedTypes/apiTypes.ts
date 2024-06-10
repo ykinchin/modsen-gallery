@@ -7,6 +7,10 @@ export type ArtworksById = {
 	data: Artwork[]
 }
 
+export type SingleArtwork = {
+	data: Artwork
+}
+
 export type Artwork = {
 	id: number
 	title: string
@@ -31,6 +35,8 @@ export type Artwork = {
 	date_start: number
 	isLoading: boolean
 	isError: boolean
+	dimensions: string
+	credit_line: string
 }
 
 export type Pagination = {

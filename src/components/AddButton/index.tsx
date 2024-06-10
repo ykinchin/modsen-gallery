@@ -3,7 +3,7 @@ import { BiBookmark } from 'react-icons/bi'
 import { Button } from './styled'
 
 type Props = {
-	onClick: () => void
+	onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 	isFavorite: boolean
 }
 

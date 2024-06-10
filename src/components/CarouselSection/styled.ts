@@ -22,6 +22,7 @@ const ErrorWrapper = styled.div`
 `
 
 const ItemWrapper = styled.div`
+	cursor: pointer;
 	width: 387px;
 	height: 514px;
 	display: flex;

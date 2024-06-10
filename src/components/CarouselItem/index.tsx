@@ -22,6 +22,14 @@ const CarouselItem = ({ artwork }: Props) => {
 	const imageUrl = getImageUrl(artwork.image_id)
 	const { checkIsFavorite, toggleFavorite } = useFavorites()
 
+	const handleClick = (
+		id: number,
+		event: React.MouseEvent<HTMLButtonElement>
+	) => {
+		event.stopPropagation()
+		toggleFavorite(id)
+	}
+
 	return (
 		<>
 			{imageUrl ? (
@@ -41,7 +49,7 @@ const CarouselItem = ({ artwork }: Props) => {
 				</ContentContainer>
 				<AddButton
 					isFavorite={checkIsFavorite(artwork.id)}
-					onClick={() => toggleFavorite(artwork.id)}
+					onClick={event => handleClick(artwork.id, event)}
 				/>
 			</FlexContainer>
 		</>

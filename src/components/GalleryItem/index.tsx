@@ -3,6 +3,7 @@ import Logo from '@components/Logo'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getImageUrl } from '@utils/imageUtils'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useFavorites } from 'src/context/FavoritesContext'
 import {
 	Author,
@@ -22,6 +23,7 @@ type Props = {
 }
 
 const GalleryItem = ({ artwork }: Props) => {
+	const navigate = useNavigate()
 	const imageUrl = getImageUrl(artwork.image_id)
 	const [hovered, setHovered] = useState(false)
 
@@ -30,10 +32,19 @@ const GalleryItem = ({ artwork }: Props) => {
 
 	const { checkIsFavorite, toggleFavorite } = useFavorites()
 
+	const handleClick = (
+		id: number,
+		event: React.MouseEvent<HTMLButtonElement>
+	) => {
+		event.stopPropagation()
+		toggleFavorite(id)
+	}
+
 	return (
 		<ItemWrapper
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
+			onClick={() => navigate(`/artwork/${artwork.id}`)}
 		>
 			<FlexContainer>
 				<ImageContainer>
@@ -57,7 +68,7 @@ const GalleryItem = ({ artwork }: Props) => {
 
 			<AddButton
 				isFavorite={checkIsFavorite(artwork.id)}
-				onClick={() => toggleFavorite(artwork.id)}
+				onClick={event => handleClick(artwork.id, event)}
 			/>
 		</ItemWrapper>
 	)

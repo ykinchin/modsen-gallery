@@ -5,7 +5,7 @@ type Props = {
 	isFavorite: boolean
 }
 
-const Button = styled.div<Props>`
+const Button = styled.button<Props>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -13,6 +13,7 @@ const Button = styled.div<Props>`
 	height: 59px;
 	width: 59px;
 	cursor: pointer;
+	border: none;
 	background-color: ${({ isFavorite }) =>
 		isFavorite ? 'rgba(251, 215, 178, 0.3)' : baseTheme.colors.grey};
 

@@ -10,6 +10,7 @@ import {
 	MdOutlineKeyboardArrowLeft,
 	MdOutlineKeyboardArrowRight
 } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 import {
 	CarouselContainer,
 	CarouselWrapper,
@@ -22,6 +23,8 @@ import {
 } from './styled'
 
 const CarouselSection = () => {
+	const navigate = useNavigate()
+
 	const [artworks, setArtworks] = useState<Artwork[]>([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState<number | null>(null)
@@ -79,7 +82,10 @@ const CarouselSection = () => {
 			/>
 			<CarouselContainer>
 				{artworks.map((artwork, index) => (
-					<ItemWrapper key={artwork.id || index}>
+					<ItemWrapper
+						key={artwork.id || index}
+						onClick={() => navigate(`/artwork/${artwork.id}`)}
+					>
 						{artwork.isLoading ? (
 							<Loader />
 						) : artwork.isError ? (
