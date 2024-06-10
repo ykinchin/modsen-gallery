@@ -5,7 +5,12 @@ export const baseTheme = {
 		primary: '#393939',
 		higlight: '#E0A449',
 		brightHiglight: '#F17900',
-		default: '#fafafa'
+		default: '#fafafa',
+		grey: '#F9F9F9'
+	},
+	fonts: {
+		primary: '"Inter", sans-serif;',
+		secondary: '"Lexend Deca", sans-serif;'
 	},
 	media: {
 		mobile: '(max-width: 425px)',
