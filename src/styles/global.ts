@@ -43,4 +43,15 @@ input {
     border: none;
     outline: none;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
 `

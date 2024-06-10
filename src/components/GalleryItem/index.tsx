@@ -60,7 +60,11 @@ const GalleryItem = ({ artwork }: Props) => {
 				<ContentContainer>
 					<TitleWrapper>
 						<Title>{artwork.title || 'Unknown title'}</Title>
-						<Author>{artwork.artist_title || 'Unknown author'}</Author>
+						<Author>
+							{artwork.artist_title ||
+								artwork.artist_display ||
+								'Unknown author'}
+						</Author>
 					</TitleWrapper>
 					<Description>{artwork.date_end}</Description>
 				</ContentContainer>

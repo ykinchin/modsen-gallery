@@ -11,6 +11,17 @@ export type SingleArtwork = {
 	data: Artwork
 }
 
+export type SearchResult = {
+	data: SearchItem[]
+}
+
+export type SearchItem = {
+	artist_display: string
+	title: string
+	id: number
+	_score: number
+}
+
 export type Artwork = {
 	id: number
 	title: string

@@ -1,6 +1,7 @@
 import {
 	ArtworksById,
 	ArtworksResponse,
+	SearchResult,
 	SingleArtwork
 } from 'src/sharedTypes/apiTypes'
 import { axiosInstance } from './axiosConfing'
@@ -31,12 +32,12 @@ export const getDetailedArtwork = async (
 
 export const getArtworksByQuery = async (
 	query: string
-): Promise<ArtworksResponse> => {
-	const response = await axiosInstance.get<ArtworksResponse>(
-		'/artworks/search',
-		{
-			params: { q: query }
+): Promise<SearchResult> => {
+	const response = await axiosInstance.get<SearchResult>('/artworks/search', {
+		params: {
+			q: query,
+			fields: 'id,title,artist_display,image_url'
 		}
-	)
+	})
 	return response.data
 }
