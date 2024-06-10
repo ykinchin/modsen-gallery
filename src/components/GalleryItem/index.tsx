@@ -2,6 +2,7 @@ import AddButton from '@components/AddButton'
 import Logo from '@components/Logo'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getImageUrl } from '@utils/imageUtils'
+import { toggleFavorite } from '@utils/toggleFavorite'
 import { useState } from 'react'
 import {
 	Author,
@@ -52,7 +53,7 @@ const GalleryItem = ({ artwork }: Props) => {
 				</ContentContainer>
 			</FlexContainer>
 
-			<AddButton />
+			<AddButton onClick={() => toggleFavorite(artwork.id)} />
 		</ItemWrapper>
 	)
 }

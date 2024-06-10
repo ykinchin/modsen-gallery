@@ -2,6 +2,7 @@ import AddButton from '@components/AddButton'
 import ErrorLogo from '@components/ErrorLogo'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getImageUrl } from '@utils/imageUtils'
+import { toggleFavorite } from '@utils/toggleFavorite'
 import {
 	Author,
 	Background,
@@ -37,7 +38,7 @@ const CarouselItem = ({ artwork }: Props) => {
 					</TitleWrapper>
 					<Description>{artwork.date_end}</Description>
 				</ContentContainer>
-				<AddButton />
+				<AddButton onClick={() => toggleFavorite(artwork.id)} />
 			</FlexContainer>
 		</>
 	)
