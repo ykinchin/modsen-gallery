@@ -27,6 +27,10 @@ export type Artwork = {
 	classification_titles: ClassificationTitle[]
 	image_id: string
 	place_of_origin: string
+	date_end: number
+	date_start: number
+	isLoading: boolean
+	isError: boolean
 }
 
 export type Pagination = {
@@ -35,7 +39,7 @@ export type Pagination = {
 	next_url: string
 	offset: number
 	total: number
-	total_pages: number
+	total_pages: number | null
 }
 
 type ArtistId = number

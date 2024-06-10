@@ -5,8 +5,13 @@ import {
 } from 'src/sharedTypes/apiTypes'
 import { axiosInstance } from './axiosConfing'
 
-export const getArtworks = async (): Promise<ArtworksResponse> => {
-	const response = await axiosInstance.get<ArtworksResponse>('/artworks')
+export const getArtworks = async (
+	page: number,
+	limit: number
+): Promise<ArtworksResponse> => {
+	const response = await axiosInstance.get<ArtworksResponse>('/artworks', {
+		params: { page, limit }
+	})
 	return response.data
 }
 
