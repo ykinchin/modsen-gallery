@@ -2,7 +2,7 @@ import AddButton from '@components/AddButton'
 import ErrorLogo from '@components/ErrorLogo'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getImageUrl } from '@utils/imageUtils'
-import { useFavorite } from 'src/hooks/useFavorite'
+import { useFavorites } from 'src/context/FavoritesContext'
 import {
 	Author,
 	Background,
@@ -20,7 +20,7 @@ type Props = {
 
 const CarouselItem = ({ artwork }: Props) => {
 	const imageUrl = getImageUrl(artwork.image_id)
-	const { isFavorite, toggleFavorite } = useFavorite(artwork.id)
+	const { checkIsFavorite, toggleFavorite } = useFavorites()
 
 	return (
 		<>
@@ -40,8 +40,8 @@ const CarouselItem = ({ artwork }: Props) => {
 					<Description>{artwork.date_end}</Description>
 				</ContentContainer>
 				<AddButton
-					isFavorite={isFavorite}
-					onClick={toggleFavorite}
+					isFavorite={checkIsFavorite(artwork.id)}
+					onClick={() => toggleFavorite(artwork.id)}
 				/>
 			</FlexContainer>
 		</>

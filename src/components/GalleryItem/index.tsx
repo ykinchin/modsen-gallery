@@ -3,7 +3,7 @@ import Logo from '@components/Logo'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getImageUrl } from '@utils/imageUtils'
 import { useState } from 'react'
-import { useFavorite } from 'src/hooks/useFavorite'
+import { useFavorites } from 'src/context/FavoritesContext'
 import {
 	Author,
 	ContentContainer,
@@ -28,7 +28,7 @@ const GalleryItem = ({ artwork }: Props) => {
 	const handleMouseEnter = () => setHovered(true)
 	const handleMouseLeave = () => setHovered(false)
 
-	const { isFavorite, toggleFavorite } = useFavorite(artwork.id)
+	const { checkIsFavorite, toggleFavorite } = useFavorites()
 
 	return (
 		<ItemWrapper
@@ -56,8 +56,8 @@ const GalleryItem = ({ artwork }: Props) => {
 			</FlexContainer>
 
 			<AddButton
-				isFavorite={isFavorite}
-				onClick={toggleFavorite}
+				isFavorite={checkIsFavorite(artwork.id)}
+				onClick={() => toggleFavorite(artwork.id)}
 			/>
 		</ItemWrapper>
 	)

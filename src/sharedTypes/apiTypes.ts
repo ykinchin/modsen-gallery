@@ -3,8 +3,8 @@ export type ArtworksResponse = {
 	pagination?: Pagination
 }
 
-export type ArtworkById = {
-	data: Artwork
+export type ArtworksById = {
+	data: Artwork[]
 }
 
 export type Artwork = {

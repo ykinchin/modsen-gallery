@@ -1,8 +1,8 @@
 import AppLayout from '@components/AppLayout'
 import { PATHS } from '@constants/routes'
-import FavoritesPage from '@pages/FavoritesPage/FavoritesPage'
+import ArtworkPage from '@pages/ArtworkPage'
+import FavoritesPage from '@pages/FavoritesPage'
 import HomePage from '@pages/HomePage/HomePage'
-import PicturePage from '@pages/PicturePage/PicturePage'
 import { Route, Routes } from 'react-router-dom'
 
 const AppRouter = () => {
@@ -22,7 +22,7 @@ const AppRouter = () => {
 				/>
 				<Route
 					path={PATHS.picture}
-					element={<PicturePage />}
+					element={<ArtworkPage />}
 				/>
 			</Route>
 		</Routes>

@@ -1,8 +1,4 @@
-import {
-	Artwork,
-	ArtworkById,
-	ArtworksResponse
-} from 'src/sharedTypes/apiTypes'
+import { ArtworksById, ArtworksResponse } from 'src/sharedTypes/apiTypes'
 import { axiosInstance } from './axiosConfing'
 
 export const getArtworks = async (
@@ -15,9 +11,11 @@ export const getArtworks = async (
 	return response.data
 }
 
-export const getArtworkById = async (id: string): Promise<Artwork> => {
-	const response = await axiosInstance.get<ArtworkById>(`/artworks/${id}`)
-	return response.data.data
+export const getArtworkById = async (ids: number[]): Promise<ArtworksById> => {
+	const response = await axiosInstance.get<ArtworksById>(`/artworks`, {
+		params: { ids }
+	})
+	return response.data
 }
 
 export const getArtworksByQuery = async (
