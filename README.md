@@ -1,30 +1,59 @@
-# React + TypeScript + Vite
+# Tестовое задание Modsen Art Museum
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Содержание
 
-Currently, two official plugins are available:
+- [API](#API)
+- [Необходимый функционал](#Необходимый-функционал)
+- [Описание экранов](#Описание-экранов)
+- [Используемые технологии](#Используемые-технологии)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## API:
 
-## Expanding the ESLint configuration
+В приложении использовано Art Institute of Chicago API
+[ART API](https://api.artic.edu/docs/#introduction)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Реализованный основной функционал функционал
 
-- Configure the top-level `parserOptions` property like this:
+[x] Получение данных о картинах с внешнего API;
+[x] Отображение списка картин с возможностью пагинации;
+[ ] Реализация формы поиска с валидацией введенных данных;
+[x] Использование роутинга для разделения страниц приложения;
+[x] Реализация дебаунса для поисковой формы;
+[x] Возможность добавления картины в список избранных с сохранением их в LocalStorage;
+[x] Возможность просмотра более детальной информации о картине;
+[x] Интерфейс для просмотра списка избранных и возможности удаления из списка;
+[x] Реализация возможности сортировки картин по различным критериям (по дате или алфавиту).
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Дополнительный функционал
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+[x] При загрузке картин реализован Loader;
+[x] Оптимизация дизайна под мобильные устройства (до 390px);
+[x] Реализация burger-menu;
+[x] Использование TypeScript для типизирования и уменьшения количества потенциальных багов;
+[x] Обработка ошибок через паттерн **_Error Boundaries_**;
+[x] Использование алиасов для импортирования файлов;
+[ ] Покрытие тестами 30% функциональности приложения;
+[x] Организация файловой структуры react приложения. Ссылка на структуру: [Структура проекта](https://github.com/mkrivel/structure);
+[x] Деплой приложения на платформу GitHub Pages или иные другие (Netlify, Vercel);
+[x] Настройка конфигурации eslint, prettier, husky;
+[x] Использование корректного GitFlow в проекте;
+[x] Использование сторонних библиотек для стилей - запрещены, кроме рекомендуемых в пункте “Используемые технологии”.
+
+## Описание экранов
+
+Главная страница представляет собой информационную часть приложения, в которой можно выполнить поиск данных. Так же на главной странице необходимо реализована пагинация по трем картинам. При клике на выбранную картину осуществляется переход на страницу с детальной информацией, чтобы изучить произведение подробнее. Понравившиеся произведения можно поместить в избранное, чтобы иметь быстрый доступ к их изучению и просмотру.
+
+## Используемые технологии
+
+- **_node.js_** - программная платформа, основанная на движке V8 (транслирующем JavaScript в машинный код);
+- **_eslint_** - линтер для JavaScript кода;
+- **_prettier_** - инструмент для автоформатирования кода;
+- **_yarn_** - менеджер пакетов;
+- **_react_** - JavaScript-библиотека для создания пользовательских интерфейсов;
+- **_typescript_** - строго типизированный язык для уменьшения количества потенциальных багов;
+- **_styled-components_** - система стилизации react компонентов;
+- **_jest_** - библиотека для unit-тестирования;
+- **_react-router-dom_** - библиотека для навигации между разными частями веб-приложения;
+- **_yup_** - библиотека для валидации форм;
+- **_formik_** - библиотека для обработки элемента ввода формы.
+- **_axios_** - библиотека для реализации запросов к api.
