@@ -3,16 +3,19 @@ import SearchResults from '@components/SearchResults'
 import SectionTitle from '@components/SectionTitle'
 import { SearchItem } from '@sharedTypes/apiTypes'
 import { getArtworksByQuery } from '@utils/api'
-import { initialValue, searchValidationSchema } from '@utils/searchValidation'
 import { Form, Formik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDebounce } from 'src/hooks/useDebounce'
 import { FormWrapper } from './styled'
 
-const SearchForm = () => {
+type Props = {
+	searchQuery?: string | null
+}
+
+const SearchForm = ({ searchQuery = '' }: Props) => {
 	const [searchResults, setSearchResults] = useState<SearchItem[] | null>(null)
-	const [searchValue, setSearchValue] = useState('')
+	const [searchValue, setSearchValue] = useState<string | null>(searchQuery)
 	const [isError, setIsError] = useState(false)
 	const debouncedSearch = useDebounce(searchValue, 300)
 	const [isResultOpened, setIsResultOpened] = useState(false)
@@ -35,6 +38,13 @@ const SearchForm = () => {
 
 		handleSearch()
 	}, [debouncedSearch])
+
+	useEffect(() => {
+		if (searchQuery) {
+			setSearchValue(searchQuery)
+			setIsResultOpened(false)
+		}
+	}, [searchQuery])
 
 	const handleInputBlur = () => {
 		setTimeout(() => setIsResultOpened(false), 500)
@@ -63,8 +73,7 @@ const SearchForm = () => {
 			onBlur={handleInputBlur}
 		>
 			<Formik
-				initialValues={initialValue}
-				validationSchema={searchValidationSchema}
+				initialValues={{ search: '' }}
 				onSubmit={() => navigate(`/results/search?query=${searchValue}`)}
 			>
 				<Form>

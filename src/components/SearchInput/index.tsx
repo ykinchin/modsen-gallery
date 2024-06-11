@@ -1,4 +1,3 @@
-import { ErrorMessage } from 'formik'
 import React from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { InputWrapper, SearchButton, StyledField } from './styled'
@@ -8,7 +7,7 @@ type Props = {
 	name: string
 	placeholder: string
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-	value: string
+	value: string | null
 }
 
 const SearchInput = ({ value, id, name, placeholder, onChange }: Props) => {
@@ -26,7 +25,6 @@ const SearchInput = ({ value, id, name, placeholder, onChange }: Props) => {
 					<CiSearch size={18} />
 				</SearchButton>
 			</InputWrapper>
-			<ErrorMessage name={name}>{error => <span>{error}</span>}</ErrorMessage>
 		</div>
 	)
 }
