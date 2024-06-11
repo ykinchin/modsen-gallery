@@ -25,7 +25,7 @@ const BurgerMenu = ({ onClick, isOpened }: Props) => {
 					/>
 				)}
 			</ToggleWrapper>
-			<SlideMenuWrapper isOpened={isOpened}>
+			<SlideMenuWrapper $isOpened={isOpened}>
 				<MenuContent>
 					<HeaderTab
 						path={PATHS.main}

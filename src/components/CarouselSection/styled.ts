@@ -2,7 +2,7 @@ import { baseTheme } from '@styles/theme'
 import { styled } from 'styled-components'
 
 type Props = {
-	current: boolean
+	$current: boolean
 }
 
 const CarouselWrapper = styled.section`
@@ -66,27 +66,23 @@ const Page = styled.div<Props>`
 	line-height: 128%;
 	width: 30px;
 	height: 30px;
-	background-color: ${({ current }) =>
-		current && baseTheme.colors.brightHiglight};
-	font-weight: ${({ current }) => current && 600};
-	color: ${({ current }) => current && 'white'};
+	background-color: ${({ $current }) =>
+		$current && baseTheme.colors.brightHiglight};
+	font-weight: ${({ $current }) => $current && 600};
+	color: ${({ $current }) => $current && 'white'};
 	border-radius: 4px;
 `
 
-const LeftArrow = styled.div`
-	cursor: pointer;
-`
-const RightArrow = styled.div`
+const Arrow = styled.div`
 	cursor: pointer;
 `
 
 export {
+	Arrow,
 	CarouselContainer,
 	CarouselWrapper,
 	ErrorWrapper,
 	ItemWrapper,
-	LeftArrow,
 	Page,
-	PaginationWrapper,
-	RightArrow
+	PaginationWrapper
 }

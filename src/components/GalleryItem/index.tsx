@@ -27,10 +27,10 @@ const GalleryItem = ({ artwork }: Props) => {
 	const imageUrl = getImageUrl(artwork.image_id)
 	const [hovered, setHovered] = useState(false)
 
+	const { checkIsFavorite, toggleFavorite } = useFavorites()
+
 	const handleMouseEnter = () => setHovered(true)
 	const handleMouseLeave = () => setHovered(false)
-
-	const { checkIsFavorite, toggleFavorite } = useFavorites()
 
 	const handleClick = (
 		id: number,
@@ -51,12 +51,13 @@ const GalleryItem = ({ artwork }: Props) => {
 					<Images
 						src={imageUrl}
 						alt={artwork.title || 'Artwork'}
-						hovered={hovered}
+						$hovered={hovered}
 					/>
-					<LogoContainer hovered={hovered}>
+					<LogoContainer $hovered={hovered}>
 						<Logo />
 					</LogoContainer>
 				</ImageContainer>
+
 				<ContentContainer>
 					<TitleWrapper>
 						<Title>{artwork.title || 'Unknown title'}</Title>

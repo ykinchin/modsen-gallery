@@ -4,12 +4,13 @@ const ldsRing = keyframes`
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 `
 
-export const LoaderWrapper = styled.div`
+const LoaderWrapper = styled.div`
 	color: #e0a449;
 	display: inline-block;
 	position: relative;
@@ -17,7 +18,7 @@ export const LoaderWrapper = styled.div`
 	height: 80px;
 `
 
-export const LoaderRing = styled.div`
+const LoaderRing = styled.div`
 	box-sizing: border-box;
 	display: block;
 	position: absolute;
@@ -32,10 +33,14 @@ export const LoaderRing = styled.div`
 	&:nth-child(1) {
 		animation-delay: -0.45s;
 	}
+
 	&:nth-child(2) {
 		animation-delay: -0.3s;
 	}
+
 	&:nth-child(3) {
 		animation-delay: -0.15s;
 	}
 `
+
+export { LoaderRing, LoaderWrapper }

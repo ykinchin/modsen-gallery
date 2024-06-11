@@ -1,8 +1,7 @@
 import { baseTheme } from '@styles/theme'
 import { styled } from 'styled-components'
 
-const ResultPage = styled.section``
-const ResultWrapper = styled.ul`
+export const ResultWrapper = styled.ul`
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -21,5 +20,3 @@ const ResultWrapper = styled.ul`
 		}
 	}
 `
-
-export { ResultPage, ResultWrapper }

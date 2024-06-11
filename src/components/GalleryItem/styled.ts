@@ -2,7 +2,7 @@ import { baseTheme } from '@styles/theme'
 import styled from 'styled-components'
 
 type Props = {
-	hovered: boolean
+	$hovered: boolean
 }
 
 const ItemWrapper = styled.div`
@@ -34,8 +34,8 @@ const Images = styled.img<Props>`
 	background-position: center;
 	transition: transform 0.6s;
 	backface-visibility: hidden;
-	transform: ${({ hovered }) =>
-		hovered ? 'rotateY(180deg)' : 'rotateY(0deg)'};
+	transform: ${({ $hovered }) =>
+		$hovered ? 'rotateY(180deg)' : 'rotateY(0deg)'};
 `
 
 const LogoContainer = styled.div<Props>`
@@ -51,8 +51,8 @@ const LogoContainer = styled.div<Props>`
 	background-color: rgba(255, 255, 255, 0.9);
 	transition: transform 0.6s;
 	backface-visibility: hidden;
-	transform: ${({ hovered }) =>
-		hovered ? 'rotateY(0deg)' : 'rotateY(-180deg)'};
+	transform: ${({ $hovered }) =>
+		$hovered ? 'rotateY(0deg)' : 'rotateY(-180deg)'};
 `
 
 const ContentContainer = styled.div`

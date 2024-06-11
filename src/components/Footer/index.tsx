@@ -8,7 +8,7 @@ const Footer = () => {
 			<AppLogo />
 			<img
 				src={Modsen}
-				alt=''
+				alt='Modsen'
 			/>
 		</FooterWrapper>
 	)

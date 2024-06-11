@@ -17,9 +17,10 @@ const Header = () => {
 	}
 
 	return (
-		<HeaderWrapper isOpened={isMenuOpened && !isAboveMediumScreens}>
+		<HeaderWrapper $isOpened={isMenuOpened && !isAboveMediumScreens}>
 			<FlexContainer>
 				<AppLogo />
+
 				{isAboveMediumScreens ? (
 					<Tabs>
 						<HeaderTab

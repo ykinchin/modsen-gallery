@@ -2,7 +2,7 @@ import { baseTheme } from '@styles/theme'
 import styled from 'styled-components'
 
 type Props = {
-	isOpened: boolean
+	$isOpened: boolean
 }
 
 const HeaderWrapper = styled.header<Props>`
@@ -10,7 +10,7 @@ const HeaderWrapper = styled.header<Props>`
 	padding: 32px 320px;
 	z-index: 30;
 	width: 100%;
-	position: ${({ isOpened }) => (isOpened ? 'fixed' : 'relative')};
+	position: ${({ $isOpened }) => ($isOpened ? 'fixed' : 'relative')};
 
 	@media ${baseTheme.media.laptop} {
 		padding: 32px 160px;

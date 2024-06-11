@@ -2,7 +2,7 @@ import { baseTheme } from '@styles/theme'
 import { styled } from 'styled-components'
 
 type Props = {
-	isOpened: boolean
+	$isOpened: boolean
 }
 
 const ToggleWrapper = styled.div`
@@ -16,8 +16,8 @@ const SlideMenuWrapper = styled.div<Props>`
 	height: max-content;
 	width: 100%;
 	background: ${baseTheme.colors.headerGradient};
-	transform: ${({ isOpened }) =>
-		isOpened ? 'translateX(0)' : 'translateX(100%)'};
+	transform: ${({ $isOpened }) =>
+		$isOpened ? 'translateX(0)' : 'translateX(100%)'};
 	transition: transform 0.3s ease-in-out;
 	z-index: 30;
 	padding: 32px 80px;

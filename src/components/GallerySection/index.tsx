@@ -5,12 +5,7 @@ import SectionTitle from '@components/SectionTitle'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getArtworks } from '@utils/api'
 import { useEffect, useState } from 'react'
-import {
-	ErrorWrapper,
-	GalleryGrid,
-	GalleryWrapper,
-	ItemWrapper
-} from './styled'
+import { ErrorWrapper, GalleryGrid, ItemWrapper } from './styled'
 
 const GallerySection = () => {
 	const [artworks, setArtworks] = useState<Artwork[]>([])
@@ -45,7 +40,7 @@ const GallerySection = () => {
 	}, [])
 
 	return (
-		<GalleryWrapper>
+		<section>
 			<SectionTitle
 				title='Here some more'
 				subtitle='Other works for you'
@@ -66,7 +61,7 @@ const GallerySection = () => {
 					</ItemWrapper>
 				))}
 			</GalleryGrid>
-		</GalleryWrapper>
+		</section>
 	)
 }
 

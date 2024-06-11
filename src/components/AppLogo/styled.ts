@@ -6,11 +6,14 @@ const LogoWrapper = styled.div`
 	align-items: end;
 	font-size: 18px;
 `
+
 const LogoText = styled.p`
 	word-spacing: 2px;
 `
+
 const LogoHighlight = styled.span`
 	color: ${baseTheme.colors.higlight};
 	font-weight: 600;
 `
+
 export { LogoHighlight, LogoText, LogoWrapper }

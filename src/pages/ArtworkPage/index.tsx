@@ -46,6 +46,7 @@ const ArtworkPage = () => {
 	}, [])
 
 	if (isLoading) return <Loader />
+
 	if (isError || !artwork)
 		return (
 			<SectionTitle
@@ -73,6 +74,7 @@ const ArtworkPage = () => {
 						{artwork?.date_start || 'Unknown'}-{artwork?.date_end || 'Unknown'}
 					</YearTitle>
 				</BlockWrapper>
+
 				<BlockWrapper>
 					<BlockTitle>Overview</BlockTitle>
 					<RowWrapper>

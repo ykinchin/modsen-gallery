@@ -2,7 +2,7 @@ import { baseTheme } from '@styles/theme'
 import { styled } from 'styled-components'
 
 type Props = {
-	isFavorite: boolean
+	$isFavorite: boolean
 }
 
 const Button = styled.button<Props>`
@@ -14,8 +14,8 @@ const Button = styled.button<Props>`
 	width: 59px;
 	cursor: pointer;
 	border: none;
-	background-color: ${({ isFavorite }) =>
-		isFavorite ? 'rgba(251, 215, 178, 0.3)' : baseTheme.colors.grey};
+	background-color: ${({ $isFavorite }) =>
+		$isFavorite ? 'rgba(251, 215, 178, 0.3)' : baseTheme.colors.grey};
 
 	&:hover {
 		transition: 0.3s ease-in-out;

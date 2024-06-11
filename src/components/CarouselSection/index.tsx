@@ -12,19 +12,17 @@ import {
 } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import {
+	Arrow,
 	CarouselContainer,
 	CarouselWrapper,
 	ErrorWrapper,
 	ItemWrapper,
-	LeftArrow,
 	Page,
-	PaginationWrapper,
-	RightArrow
+	PaginationWrapper
 } from './styled'
 
 const CarouselSection = () => {
 	const navigate = useNavigate()
-
 	const [artworks, setArtworks] = useState<Artwork[]>([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState<number | null>(null)
@@ -95,6 +93,7 @@ const CarouselSection = () => {
 				title='Topics for you'
 				subtitle='Our special gallery'
 			/>
+
 			<CarouselContainer>
 				{artworks.map((artwork, index) => (
 					<ItemWrapper
@@ -114,24 +113,25 @@ const CarouselSection = () => {
 					</ItemWrapper>
 				))}
 			</CarouselContainer>
+
 			<PaginationWrapper>
 				{currentPage !== 1 && (
-					<LeftArrow onClick={handlePrevPage}>
+					<Arrow onClick={handlePrevPage}>
 						<MdOutlineKeyboardArrowLeft size={24} />
-					</LeftArrow>
+					</Arrow>
 				)}
 				{pagesToShow.map(page => (
 					<Page
 						key={page}
-						current={page === currentPage}
+						$current={page === currentPage}
 						onClick={() => handlePageClick(page)}
 					>
 						{page}
 					</Page>
 				))}
-				<RightArrow onClick={handleNextPage}>
+				<Arrow onClick={handleNextPage}>
 					<MdOutlineKeyboardArrowRight size={24} />
-				</RightArrow>
+				</Arrow>
 			</PaginationWrapper>
 		</CarouselWrapper>
 	)

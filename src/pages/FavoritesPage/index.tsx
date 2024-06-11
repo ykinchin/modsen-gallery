@@ -16,8 +16,6 @@ const FavoritesPage = () => {
 
 	useEffect(() => {
 		const fetchArtworks = async () => {
-			setIsLoading(true)
-			setIsError(false)
 			try {
 				if (favorites.length > 0) {
 					const response = await getArtworkById(favorites)
@@ -45,12 +43,14 @@ const FavoritesPage = () => {
 			</PageTitle>
 
 			{isLoading && <Loader />}
+
 			{isError && (
 				<SectionTitle
 					title='Something went wrong'
 					subtitle='Try again later'
 				/>
 			)}
+
 			{favorites.length === 0 && (
 				<SectionTitle
 					title='You have no saved artworks'

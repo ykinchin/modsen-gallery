@@ -4,7 +4,7 @@ import { SearchItem } from '@sharedTypes/apiTypes'
 import { getArtworksByQuery } from '@utils/api'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ResultPage, ResultWrapper } from './styled'
+import { ResultWrapper } from './styled'
 
 const ResultsPage = () => {
 	const [result, setResult] = useState<SearchItem[] | null>(null)
@@ -47,7 +47,7 @@ const ResultsPage = () => {
 	return (
 		<>
 			{result && result.length > 0 ? (
-				<ResultPage>
+				<section>
 					<ResultWrapper>
 						{result.map(item => (
 							<li
@@ -59,7 +59,7 @@ const ResultsPage = () => {
 							</li>
 						))}
 					</ResultWrapper>
-				</ResultPage>
+				</section>
 			) : (
 				<SectionTitle
 					title='No results found'

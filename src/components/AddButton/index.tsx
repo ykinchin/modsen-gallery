@@ -11,7 +11,7 @@ const AddButton = ({ onClick, isFavorite }: Props) => {
 	return (
 		<Button
 			onClick={onClick}
-			isFavorite={isFavorite}
+			$isFavorite={isFavorite}
 		>
 			<BiBookmark
 				size={24}
