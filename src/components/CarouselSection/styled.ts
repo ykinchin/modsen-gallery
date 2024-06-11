@@ -14,6 +14,11 @@ const CarouselContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 1280px;
+
+	@media ${baseTheme.media.laptop} {
+		width: max-content;
+		justify-content: center;
+	}
 `
 
 const ErrorWrapper = styled.div`
@@ -29,6 +34,11 @@ const ItemWrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+
+	@media ${baseTheme.media.mobile} {
+		width: 287px;
+		height: 414px;
+	}
 `
 
 const PaginationWrapper = styled.div`
@@ -36,6 +46,15 @@ const PaginationWrapper = styled.div`
 	align-items: center;
 	gap: 18px;
 	align-self: flex-end;
+
+	@media ${baseTheme.media.laptop} {
+		align-self: center;
+	}
+
+	@media ${baseTheme.media.mobile} {
+		align-self: center;
+		gap: 4px;
+	}
 `
 
 const Page = styled.div<Props>`

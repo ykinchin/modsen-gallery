@@ -19,6 +19,10 @@ const Subtitle = styled.h3`
 	font-weight: 400;
 	font-size: 32px;
 	color: ${baseTheme.colors.primary};
+
+	@media ${baseTheme.media.mobile} {
+		font-size: 24px;
+	}
 `
 
 export { Subtitle, Title, TitleWrapper }

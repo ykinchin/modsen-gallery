@@ -28,7 +28,22 @@ const CarouselSection = () => {
 	const [artworks, setArtworks] = useState<Artwork[]>([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState<number | null>(null)
+	const [limit, setLimit] = useState(3)
 	const pagesToShow = generatePages(currentPage, totalPages)
+
+	useEffect(() => {
+		const handleResize = () => {
+			setLimit(window.innerWidth < 1024 ? 1 : 3)
+		}
+
+		window.addEventListener('resize', handleResize)
+
+		handleResize()
+
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
+	}, [])
 
 	useEffect(() => {
 		const fetchArtworks = async (page: number, limit: number) => {
@@ -53,10 +68,10 @@ const CarouselSection = () => {
 			}
 		}
 
-		setArtworks(Array(3).fill({ isLoading: true, isError: false }))
+		setArtworks(Array(limit).fill({ isLoading: true, isError: false }))
 
-		fetchArtworks(currentPage, 3)
-	}, [currentPage])
+		fetchArtworks(currentPage, limit)
+	}, [currentPage, limit])
 
 	const handleNextPage = () => {
 		if (totalPages && currentPage < totalPages) {

@@ -63,6 +63,10 @@ const ContentContainer = styled.div`
 
 const TitleWrapper = styled.div`
 	max-width: 219px;
+
+	@media ${baseTheme.media.desktop} {
+		max-width: 159px;
+	}
 `
 
 const Title = styled.h3`

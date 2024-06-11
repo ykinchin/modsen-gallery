@@ -5,6 +5,10 @@ const InputSectionWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
 	gap: 72px;
+
+	@media ${baseTheme.media.tablet} {
+		gap: 18px;
+	}
 `
 
 const InputTitle = styled.h1`
@@ -15,6 +19,14 @@ const InputTitle = styled.h1`
 
 	span {
 		color: ${baseTheme.colors.brightHiglight};
+	}
+
+	@media ${baseTheme.media.tablet} {
+		font-size: 32px;
+	}
+
+	@media ${baseTheme.media.mobile} {
+		font-size: 24px;
 	}
 `
 
