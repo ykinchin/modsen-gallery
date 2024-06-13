@@ -26,7 +26,7 @@ const CarouselSection = () => {
 	const [artworks, setArtworks] = useState<Artwork[]>([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState<number | null>(null)
-	const [limit, setLimit] = useState(3)
+	const [limit, setLimit] = useState(window.innerWidth < 1024 ? 1 : 3)
 	const pagesToShow = generatePages(currentPage, totalPages)
 
 	useEffect(() => {
