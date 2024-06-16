@@ -15,11 +15,11 @@ const Button = styled.button<Props>`
 	cursor: pointer;
 	border: none;
 	background-color: ${({ $isFavorite }) =>
-		$isFavorite ? 'rgba(251, 215, 178, 0.3)' : baseTheme.colors.grey};
+		$isFavorite ? baseTheme.colors.lessHiglight : baseTheme.colors.grey};
 
 	&:hover {
 		transition: 0.3s ease-in-out;
-		background-color: rgba(251, 215, 178, 0.3);
+		background-color: ${baseTheme.colors.lessHiglight};
 	}
 `
 
