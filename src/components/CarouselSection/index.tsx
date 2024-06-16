@@ -1,7 +1,9 @@
-import CarouselItem from '@components/CarouselItem'
-import ErrorLogo from '@components/ErrorLogo'
-import Loader from '@components/Loader'
-import SectionTitle from '@components/SectionTitle'
+import { AppIcon } from '@components/appIcon'
+import { AppLogo } from '@components/appLogo'
+import { CarouselItem } from '@components/carouselItem'
+import { Loader } from '@components/loader'
+import { SectionTitle } from '@components/sectionTitle'
+import { LimitPerPage } from '@constants/limits'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getArtworks } from '@utils/api'
 import { generatePages } from '@utils/pageUtils'
@@ -21,17 +23,25 @@ import {
 	PaginationWrapper
 } from './styled'
 
-const CarouselSection = () => {
+const SMALL_SCREEN_WIDTH = 1024
+
+export const CarouselSection = () => {
 	const navigate = useNavigate()
 	const [artworks, setArtworks] = useState<Artwork[]>([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState<number | null>(null)
-	const [limit, setLimit] = useState(window.innerWidth < 1024 ? 1 : 3)
+	const [limit, setLimit] = useState(
+		window.innerWidth < SMALL_SCREEN_WIDTH ? 1 : 3
+	)
 	const pagesToShow = generatePages(currentPage, totalPages)
 
 	useEffect(() => {
 		const handleResize = () => {
-			setLimit(window.innerWidth < 1024 ? 1 : 3)
+			setLimit(
+				window.innerWidth < SMALL_SCREEN_WIDTH
+					? LimitPerPage.Small
+					: LimitPerPage.Medium
+			)
 		}
 
 		window.addEventListener('resize', handleResize)
@@ -45,28 +55,25 @@ const CarouselSection = () => {
 
 	useEffect(() => {
 		const fetchArtworks = async (page: number, limit: number) => {
+			setArtworks(Array(limit).fill({ isLoading: true, isError: false }))
 			try {
 				const response = await getArtworks(page, limit)
-				setArtworks(
-					response.data.map(artwork => ({
-						...artwork,
-						isLoading: false,
-						isError: false
-					}))
-				)
+				const preparedArtworks = response.data.map(artwork => ({
+					...artwork,
+					isLoading: false,
+					isError: false
+				}))
+
+				setArtworks(preparedArtworks)
 				setTotalPages(response.pagination!.total_pages)
 			} catch (error) {
-				setArtworks(prevArtworks =>
-					prevArtworks.map(artwork => ({
-						...artwork,
-						isLoading: false,
-						isError: true
-					}))
-				)
+				const errorArtworks = Array(limit).fill({
+					isLoading: false,
+					isError: true
+				})
+				setArtworks(errorArtworks)
 			}
 		}
-
-		setArtworks(Array(limit).fill({ isLoading: true, isError: false }))
 
 		fetchArtworks(currentPage, limit)
 	}, [currentPage, limit])
@@ -95,20 +102,20 @@ const CarouselSection = () => {
 			/>
 
 			<CarouselContainer>
-				{artworks.map((artwork, index) => (
+				{artworks.map(({ id, isLoading, isError, ...rest }, index) => (
 					<ItemWrapper
-						key={artwork.id || index}
-						onClick={() => navigate(`/artwork/${artwork.id}`)}
+						key={id || index}
+						onClick={() => navigate(`/artwork/${id}`)}
 					>
-						{artwork.isLoading ? (
+						{isLoading ? (
 							<Loader />
-						) : artwork.isError ? (
+						) : isError ? (
 							<ErrorWrapper>
-								<ErrorLogo />
+								<AppLogo isError />
 								<p>Failed to load artwork</p>
 							</ErrorWrapper>
 						) : (
-							<CarouselItem artwork={artwork} />
+							<CarouselItem artwork={{ id, isLoading, isError, ...rest }} />
 						)}
 					</ItemWrapper>
 				))}
@@ -117,7 +124,10 @@ const CarouselSection = () => {
 			<PaginationWrapper>
 				{currentPage !== 1 && (
 					<Arrow onClick={handlePrevPage}>
-						<MdOutlineKeyboardArrowLeft size={24} />
+						<AppIcon
+							Icon={MdOutlineKeyboardArrowLeft}
+							color='black'
+						/>
 					</Arrow>
 				)}
 				{pagesToShow.map(page => (
@@ -130,11 +140,12 @@ const CarouselSection = () => {
 					</Page>
 				))}
 				<Arrow onClick={handleNextPage}>
-					<MdOutlineKeyboardArrowRight size={24} />
+					<AppIcon
+						Icon={MdOutlineKeyboardArrowRight}
+						color='black'
+					/>
 				</Arrow>
 			</PaginationWrapper>
 		</CarouselWrapper>
 	)
 }
-
-export default CarouselSection

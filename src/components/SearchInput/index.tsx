@@ -10,7 +10,13 @@ type Props = {
 	value: string | null
 }
 
-const SearchInput = ({ value, id, name, placeholder, onChange }: Props) => {
+export const SearchInput = ({
+	value,
+	id,
+	name,
+	placeholder,
+	onChange
+}: Props) => {
 	return (
 		<div>
 			<InputWrapper>
@@ -28,5 +34,3 @@ const SearchInput = ({ value, id, name, placeholder, onChange }: Props) => {
 		</div>
 	)
 }
-
-export default SearchInput

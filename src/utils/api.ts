@@ -16,11 +16,13 @@ export const getArtworks = async (
 	return response.data
 }
 
-export const getArtworkById = async (ids: number[]): Promise<ArtworksById> => {
+export const getArtworkById = async (
+	ids: number[]
+): Promise<{ data: ArtworksById }> => {
 	const response = await axiosInstance.get<ArtworksById>(`/artworks`, {
 		params: { ids }
 	})
-	return response.data
+	return response
 }
 
 export const getDetailedArtwork = async (
