@@ -26,7 +26,7 @@ export const getArtworkById = async (
 }
 
 export const getDetailedArtwork = async (
-	id: number | string
+	id: number
 ): Promise<SingleArtwork> => {
 	const response = await axiosInstance.get<SingleArtwork>(`/artworks/${id}`)
 	return response.data

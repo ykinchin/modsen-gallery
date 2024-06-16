@@ -21,12 +21,10 @@ import {
 } from './styled'
 
 export const ArtworkPage = () => {
-	const { id: paramId } = useParams<{ id: string }>()
+	const { id } = useParams<{ id: string }>()
 	const { checkIsFavorite, toggleFavorite } = useFavoritesContext()
 
-	const artId = paramId ? +paramId : ''
-
-	const fetchArtwork = () => getDetailedArtwork(artId)
+	const fetchArtwork = () => getDetailedArtwork(+id!)
 
 	const {
 		data: artwork,
