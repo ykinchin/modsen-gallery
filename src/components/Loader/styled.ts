@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'styled-components'
+import { baseTheme } from '@styles/theme'
+import { keyframes, styled } from 'styled-components'
 
 const ldsRing = keyframes`
   0% {
@@ -11,7 +12,7 @@ const ldsRing = keyframes`
 `
 
 const LoaderWrapper = styled.div`
-	color: #e0a449;
+	color: ${baseTheme.colors.higlight};
 	display: inline-block;
 	position: relative;
 	width: 80px;

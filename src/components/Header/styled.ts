@@ -1,5 +1,5 @@
 import { baseTheme } from '@styles/theme'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 type Props = {
 	$isOpened: boolean
@@ -9,7 +9,7 @@ const HeaderWrapper = styled.header<Props>`
 	background: ${baseTheme.colors.headerGradient};
 	padding: 32px 320px;
 	z-index: 30;
-	width: 100%;
+	width: ${baseTheme.width.full};
 	position: ${({ $isOpened }) => ($isOpened ? 'fixed' : 'relative')};
 
 	@media ${baseTheme.media.laptop} {
@@ -29,16 +29,16 @@ const FlexContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	color: #ffffff;
+	color: white;
 `
 
 const Tabs = styled.div`
 	display: flex;
-	gap: 16px;
+	gap: ${baseTheme.gap.normal};
 
 	@media ${baseTheme.media.mobile} {
 		flex-direction: column;
-		gap: 8px;
+		gap: ${baseTheme.gap.s};
 	}
 `
 

@@ -1,18 +1,18 @@
 import { baseTheme } from '@styles/theme'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const InputSectionWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
-	gap: 72px;
+	gap: ${baseTheme.gap.l};
 
 	@media ${baseTheme.media.tablet} {
-		gap: 18px;
+		gap: ${baseTheme.gap.normal};
 	}
 `
 
 const InputTitle = styled.h1`
-	font-size: 64px;
+	font-size: ${baseTheme.fontSize.xl};
 	font-weight: 700;
 	color: ${baseTheme.colors.primary};
 	text-align: center;
@@ -22,11 +22,11 @@ const InputTitle = styled.h1`
 	}
 
 	@media ${baseTheme.media.tablet} {
-		font-size: 32px;
+		font-size: ${baseTheme.fontSize.l};
 	}
 
 	@media ${baseTheme.media.mobile} {
-		font-size: 24px;
+		font-size: ${baseTheme.fontSize.m};
 	}
 `
 

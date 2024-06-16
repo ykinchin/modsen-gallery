@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 const ResultWrapper = styled.ul`
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
+	gap: ${baseTheme.gap.xs};
 	position: absolute;
 	top: 50px;
 	z-index: 20;
@@ -13,7 +13,7 @@ const ResultWrapper = styled.ul`
 	li {
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
+		gap: ${baseTheme.gap.s};
 		padding: 16px 24px;
 		background-color: white;
 		cursor: pointer;
@@ -27,7 +27,7 @@ const ResultWrapper = styled.ul`
 const NoResult = styled.div`
 	background-color: white;
 	padding: 12px 24px;
-	font-size: 24px;
+	font-size: ${baseTheme.fontSize.m};
 `
 
 export { NoResult, ResultWrapper }
