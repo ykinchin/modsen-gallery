@@ -4,7 +4,8 @@ type FetchFunction<T> = () => Promise<{ data: T }>
 
 const useFetchData = <T>(
 	fetchFunction: FetchFunction<T>,
-	dependencies: React.DependencyList = [],
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	dependencies: any[] = [],
 	cacheKey?: string
 ) => {
 	const [data, setData] = useState<T | null>(null)
@@ -38,7 +39,8 @@ const useFetchData = <T>(
 		}
 
 		fetchData()
-	}, [...dependencies, cacheKey, fetchFunction])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, dependencies)
 
 	return { data, isLoading, isError }
 }
