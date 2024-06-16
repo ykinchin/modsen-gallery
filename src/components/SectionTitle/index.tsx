@@ -5,7 +5,7 @@ type Props = {
 	subtitle?: string
 }
 
-const SectionTitle = ({ title, subtitle }: Props) => {
+export const SectionTitle = ({ title, subtitle }: Props) => {
 	return (
 		<TitleWrapper>
 			<Title>{title}</Title>
@@ -13,5 +13,3 @@ const SectionTitle = ({ title, subtitle }: Props) => {
 		</TitleWrapper>
 	)
 }
-
-export default SectionTitle

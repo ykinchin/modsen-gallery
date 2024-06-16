@@ -1,9 +1,9 @@
-import Footer from '@components/Footer'
-import Header from '@components/Header'
+import { Footer } from '@components/footer'
+import { Header } from '@components/header'
 import { Outlet } from 'react-router-dom'
 import { Content, Layout } from './styled'
 
-const AppLayout = () => {
+export const AppLayout = () => {
 	return (
 		<Layout>
 			<Header />
@@ -14,5 +14,3 @@ const AppLayout = () => {
 		</Layout>
 	)
 }
-
-export default AppLayout

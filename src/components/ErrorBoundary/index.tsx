@@ -1,4 +1,4 @@
-import SectionTitle from '@components/SectionTitle'
+import { SectionTitle } from '@components/sectionTitle'
 import { Component, ErrorInfo, ReactNode } from 'react'
 
 interface Props {
@@ -9,7 +9,7 @@ interface State {
 	hasError: boolean
 }
 
-class AppErrorBoundary extends Component<Props, State> {
+export class AppErrorBoundary extends Component<Props, State> {
 	public state: State = {
 		hasError: false
 	}
@@ -36,5 +36,3 @@ class AppErrorBoundary extends Component<Props, State> {
 		return this.props.children
 	}
 }
-
-export default AppErrorBoundary

@@ -14,7 +14,7 @@ const SlideMenuWrapper = styled.div<Props>`
 	top: 124px;
 	right: 0;
 	height: max-content;
-	width: 100%;
+	width: ${baseTheme.width.full};
 	background: ${baseTheme.colors.headerGradient};
 	transform: ${({ $isOpened }) =>
 		$isOpened ? 'translateX(0)' : 'translateX(100%)'};
@@ -30,7 +30,7 @@ const SlideMenuWrapper = styled.div<Props>`
 const MenuContent = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
-	color: #ffffff;
+	gap: ${baseTheme.gap.normal};
+	color: 'white';
 `
 export { MenuContent, SlideMenuWrapper, ToggleWrapper }
