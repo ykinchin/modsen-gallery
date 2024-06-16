@@ -1,12 +1,12 @@
 import { baseTheme } from '@styles/theme'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 type Props = {
 	url: string
 }
 
 const Background = styled.div<Props>`
-	width: 100%;
+	width: ${baseTheme.width.full};
 	height: 444px;
 	background-image: url(${props => props.url});
 	background-size: cover;
@@ -16,7 +16,7 @@ const Background = styled.div<Props>`
 
 const ErrorContainter = styled.div`
 	height: 444px;
-	width: 100%;
+	width: ${baseTheme.width.full};
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -29,14 +29,14 @@ const FlexContainer = styled.div`
 	justify-content: space-between;
 	background-color: white;
 	padding: 17px 24px;
-	gap: 8px;
+	gap: ${baseTheme.gap.s};
 	transform: translateY(-50%);
 `
 
 const ContentContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: ${baseTheme.gap.s};
 `
 
 const TitleWrapper = styled.div`
@@ -45,14 +45,14 @@ const TitleWrapper = styled.div`
 `
 
 const Title = styled.h3`
-	font-size: 17px;
+	font-size: ${baseTheme.fontSize.xs};
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-weight: 400;
 	line-height: 150%;
 	letter-spacing: -0.03em;
-	color: #393939;
+	color: ${baseTheme.colors.primary};
 	font-weight: 600;
 `
 

@@ -1,4 +1,4 @@
-import { baseTheme } from '@styles/theme'
+import { AppIcon } from '@components/appIcon'
 import { BiBookmark } from 'react-icons/bi'
 import { Button } from './styled'
 
@@ -7,18 +7,13 @@ type Props = {
 	isFavorite: boolean
 }
 
-const AddButton = ({ onClick, isFavorite }: Props) => {
+export const AddButton = ({ onClick, isFavorite }: Props) => {
 	return (
 		<Button
 			onClick={onClick}
 			$isFavorite={isFavorite}
 		>
-			<BiBookmark
-				size={24}
-				color={baseTheme.colors.higlight}
-			/>
+			<AppIcon Icon={BiBookmark} />
 		</Button>
 	)
 }
-
-export default AddButton

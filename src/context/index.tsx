@@ -1,5 +1,5 @@
-import { getFavorites, saveToFavorite } from '@utils/favoriteUtils'
-import { ReactNode, createContext, useContext, useMemo, useState } from 'react'
+import { ReactNode, createContext, useContext, useMemo } from 'react'
+import { useFavorites } from 'src/hooks/useFavorites'
 
 type Props = {
 	children: ReactNode
@@ -18,17 +18,7 @@ const FavoritesContext = createContext<ContextType>({
 })
 
 export const FavoritesProvider = ({ children }: Props) => {
-	const [favorites, setFavorites] = useState<number[]>(getFavorites())
-
-	const checkIsFavorite = (id: number) => favorites.includes(id)
-
-	const toggleFavorite = (id: number) => {
-		const newFavorites = favorites.includes(id)
-			? favorites.filter(fav => fav !== id)
-			: [...favorites, id]
-		setFavorites(newFavorites)
-		saveToFavorite(newFavorites)
-	}
+	const { favorites, toggleFavorite, checkIsFavorite } = useFavorites()
 
 	const value = useMemo(
 		() => ({
@@ -46,4 +36,4 @@ export const FavoritesProvider = ({ children }: Props) => {
 	)
 }
 
-export const useFavorites = () => useContext(FavoritesContext)
+export const useFavoritesContext = () => useContext(FavoritesContext)

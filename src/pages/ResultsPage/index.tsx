@@ -1,14 +1,15 @@
-import Loader from '@components/Loader'
-import SectionTitle from '@components/SectionTitle'
-import { SearchItem } from '@sharedTypes/apiTypes'
+import { Loader } from '@components/loader'
+import { SectionTitle } from '@components/sectionTitle'
 import { getArtworksByQuery } from '@utils/api'
 import { searchValidationSchema } from '@utils/searchValidation'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { useLocation, useNavigate } from 'react-router-dom'
+import useFetchData from 'src/hooks/useFetch'
 import {
 	FieldWrapper,
+	FormWrapper,
 	ResultPage,
 	ResultWrapper,
 	SearchButton,
@@ -16,10 +17,7 @@ import {
 	SortToggle
 } from './styled'
 
-const ResultsPage = () => {
-	const [result, setResult] = useState<SearchItem[] | null>(null)
-	const [isLoading, setIsLoading] = useState(true)
-	const [isError, setIsError] = useState(false)
+export const ResultsPage = () => {
 	const [sortBy, setSortBy] = useState<'artist_display' | 'title'>(
 		'artist_display'
 	)
@@ -29,24 +27,25 @@ const ResultsPage = () => {
 	const searchParams = new URLSearchParams(location.search)
 	const query = searchParams.get('query')
 
-	useEffect(() => {
-		const fetchArtworksByQuery = async () => {
-			if (query)
-				try {
-					const response = await getArtworksByQuery(query)
-					setResult(response.data)
-				} catch (error) {
-					setIsError(true)
-				} finally {
-					setIsLoading(false)
-				}
-		}
-		fetchArtworksByQuery()
-	}, [query])
+	const fetchArtworksByQuery = () => getArtworksByQuery(query || '')
+
+	const {
+		data: result,
+		isLoading,
+		isError
+	} = useFetchData(fetchArtworksByQuery, [query])
 
 	const handleSort = (sortBy: 'artist_display' | 'title') => {
 		setSortBy(sortBy)
 	}
+
+	const sortedResult = result?.sort((a, b) => {
+		if (sortBy === 'artist_display') {
+			return a.artist_display.localeCompare(b.artist_display)
+		} else {
+			return a.title.localeCompare(b.title)
+		}
+	})
 
 	if (isLoading) {
 		return <Loader />
@@ -61,25 +60,11 @@ const ResultsPage = () => {
 		)
 	}
 
-	const sortedResult = result?.sort((a, b) => {
-		if (sortBy === 'artist_display') {
-			return a.artist_display.localeCompare(b.artist_display)
-		} else {
-			return a.title.localeCompare(b.title)
-		}
-	})
-
 	return (
 		<>
 			{sortedResult && sortedResult.length > 0 ? (
 				<ResultPage>
-					<div
-						style={{
-							width: '100%',
-							display: 'flex',
-							flexDirection: 'column'
-						}}
-					>
+					<FormWrapper>
 						<Formik
 							initialValues={{ search: '' }}
 							validationSchema={searchValidationSchema}
@@ -103,7 +88,7 @@ const ResultsPage = () => {
 								</ErrorMessage>
 							</Form>
 						</Formik>
-					</div>
+					</FormWrapper>
 					<SortToggle>
 						<SortButton
 							$active={sortBy === 'artist_display'}
@@ -119,13 +104,13 @@ const ResultsPage = () => {
 						</SortButton>
 					</SortToggle>
 					<ResultWrapper>
-						{sortedResult.map(item => (
+						{sortedResult.map(({ id, title, artist_display }) => (
 							<li
-								key={item.id}
-								onClick={() => navigate(`/artwork/${item.id}`)}
+								key={id}
+								onClick={() => navigate(`/artwork/${id}`)}
 							>
-								{item.title}
-								<span>{item.artist_display}</span>
+								{title}
+								<span>{artist_display}</span>
 							</li>
 						))}
 					</ResultWrapper>
@@ -139,5 +124,3 @@ const ResultsPage = () => {
 		</>
 	)
 }
-
-export default ResultsPage

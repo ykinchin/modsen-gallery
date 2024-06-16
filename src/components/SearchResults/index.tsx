@@ -4,24 +4,27 @@ import { ResultWrapper } from './styled'
 
 type Props = {
 	result: SearchItem[]
+	isLoading: boolean
 }
 
-const SearchResults = ({ result }: Props) => {
+export const SearchResults = ({ result, isLoading }: Props) => {
 	const navigate = useNavigate()
 
 	return (
 		<ResultWrapper>
-			{result.map(item => (
-				<li
-					key={item.id}
-					onClick={() => navigate(`/artwork/${item.id}`)}
-				>
-					{item.title}
-					<span>{item.artist_display}</span>
-				</li>
-			))}
+			{isLoading ? (
+				<div>Looking for results...</div>
+			) : (
+				result.map(({ id, title, artist_display }) => (
+					<li
+						key={id}
+						onClick={() => navigate(`/artwork/${id}`)}
+					>
+						{title}
+						<span>{artist_display}</span>
+					</li>
+				))
+			)}
 		</ResultWrapper>
 	)
 }
-
-export default SearchResults

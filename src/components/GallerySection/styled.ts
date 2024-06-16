@@ -1,11 +1,17 @@
 import { baseTheme } from '@styles/theme'
 import { styled } from 'styled-components'
 
+const GalleryWrapper = styled.section`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`
+
 const GalleryGrid = styled.div`
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 20px;
-	width: 100%;
+	gap: ${baseTheme.gap.m};
+	width: ${baseTheme.width.full};
 	max-width: 1280px;
 
 	@media ${baseTheme.media.laptop} {
@@ -15,13 +21,6 @@ const GalleryGrid = styled.div`
 	@media ${baseTheme.media.tablet} {
 		grid-template-columns: repeat(1, 1fr);
 	}
-`
-
-const ErrorWrapper = styled.div`
-	width: 416px;
-	padding: 16px 13px;
-	display: flex;
-	gap: 16px;
 `
 
 const ItemWrapper = styled.div`
@@ -41,4 +40,4 @@ const ItemWrapper = styled.div`
 	}
 `
 
-export { ErrorWrapper, GalleryGrid, ItemWrapper }
+export { GalleryGrid, GalleryWrapper, ItemWrapper }

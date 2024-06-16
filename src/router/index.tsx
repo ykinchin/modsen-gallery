@@ -1,12 +1,12 @@
-import AppLayout from '@components/AppLayout'
+import { AppLayout } from '@components/appLayout'
 import { PATHS } from '@constants/routes'
-import ArtworkPage from '@pages/ArtworkPage'
-import FavoritesPage from '@pages/FavoritesPage'
-import HomePage from '@pages/HomePage/HomePage'
-import ResultsPage from '@pages/ResultsPage'
+import { ArtworkPage } from '@pages/artworkPage'
+import { FavoritesPage } from '@pages/favoritesPage'
+import { HomePage } from '@pages/homePage'
+import { ResultsPage } from '@pages/resultsPage'
 import { Route, Routes } from 'react-router-dom'
 
-const AppRouter = () => {
+export const AppRouter = () => {
 	return (
 		<Routes>
 			<Route
@@ -33,5 +33,3 @@ const AppRouter = () => {
 		</Routes>
 	)
 }
-
-export default AppRouter

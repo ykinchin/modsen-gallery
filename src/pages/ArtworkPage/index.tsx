@@ -1,12 +1,12 @@
-import AddButton from '@components/AddButton'
-import Loader from '@components/Loader'
-import SectionTitle from '@components/SectionTitle'
+import { AddButton } from '@components/addButton'
+import { Loader } from '@components/loader'
+import { SectionTitle } from '@components/sectionTitle'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getDetailedArtwork } from '@utils/api'
 import { getImageUrl } from '@utils/imageUtils'
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useFavorites } from 'src/context/FavoritesContext'
+import { useFavoritesContext } from 'src/context'
+import useFetchData from 'src/hooks/useFetch'
 import {
 	ArtworkImg,
 	ArtworkSection,
@@ -20,30 +20,19 @@ import {
 	YearTitle
 } from './styled'
 
-const ArtworkPage = () => {
+export const ArtworkPage = () => {
 	const { id } = useParams<{ id: string }>()
-	const [artwork, setArtwork] = useState<Artwork | null>(null)
-	const [isLoading, setIsLoading] = useState(true)
-	const [isError, setIsError] = useState(false)
-	const { checkIsFavorite, toggleFavorite } = useFavorites()
-	const imageUrl = artwork && getImageUrl(artwork.image_id)
+	const { checkIsFavorite, toggleFavorite } = useFavoritesContext()
 
-	useEffect(() => {
-		const fetchArtworks = async () => {
-			setIsLoading(true)
-			setIsError(false)
-			try {
-				if (!id) return
-				const response = await getDetailedArtwork(+id)
-				setArtwork(response.data)
-			} catch (error) {
-				setIsError(true)
-			} finally {
-				setIsLoading(false)
-			}
-		}
-		fetchArtworks()
-	}, [])
+	const fetchArtwork = () => getDetailedArtwork(+id!)
+
+	const {
+		data: artwork,
+		isLoading,
+		isError
+	} = useFetchData<Artwork>(fetchArtwork, [])
+
+	const imageUrl = artwork && getImageUrl(artwork.image_id)
 
 	if (isLoading) return <Loader />
 
@@ -98,5 +87,3 @@ const ArtworkPage = () => {
 		</ArtworkSection>
 	)
 }
-
-export default ArtworkPage

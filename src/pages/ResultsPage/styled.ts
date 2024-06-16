@@ -9,12 +9,18 @@ const ResultPage = styled.section`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 20px;
+	gap: ${baseTheme.gap.m};
+`
+
+const FormWrapper = styled.div`
+	width: ${baseTheme.width.full};
+	display: 'flex';
+	flex-direction: 'column';
 `
 
 const SortToggle = styled.div`
 	display: flex;
-	gap: 20px;
+	gap: ${baseTheme.gap.m};
 `
 
 const SortButton = styled.button<Props>`
@@ -29,13 +35,13 @@ const SortButton = styled.button<Props>`
 const ResultWrapper = styled.ul`
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: ${baseTheme.gap.normal};
 
 	li {
 		padding: 16px 32px;
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
+		gap: ${baseTheme.gap.s};
 		background-color: white;
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		cursor: pointer;
@@ -50,21 +56,22 @@ const FieldWrapper = styled.div`
 
 	input {
 		border-radius: 16px 0 0 16px;
-		background: rgba(57, 57, 57, 0.05);
+		background: ${baseTheme.colors.inputBackground};
 		border: none;
 	}
 `
 
 const SearchButton = styled.button`
 	border: none;
-	background: rgba(57, 57, 57, 0.05);
+	background: ${baseTheme.colors.inputBackground};
 	border-radius: 0 16px 16px 0;
 	cursor: pointer;
-	padding: 16px;
+	padding: ${baseTheme.padding.default};
 `
 
 export {
 	FieldWrapper,
+	FormWrapper,
 	ResultPage,
 	ResultWrapper,
 	SearchButton,

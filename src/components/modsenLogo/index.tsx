@@ -1,4 +1,4 @@
-const ModsenLogo = () => {
+export const ModsenLogo = () => {
 	return (
 		<svg
 			width='206'
@@ -60,5 +60,3 @@ const ModsenLogo = () => {
 		</svg>
 	)
 }
-
-export default ModsenLogo

@@ -23,7 +23,7 @@ const CarouselContainer = styled.div`
 
 const ErrorWrapper = styled.div`
 	display: flex;
-	gap: 16px;
+	gap: ${baseTheme.gap.normal};
 `
 
 const ItemWrapper = styled.div`
@@ -44,7 +44,7 @@ const ItemWrapper = styled.div`
 const PaginationWrapper = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 18px;
+	gap: ${baseTheme.gap.normal};
 	align-self: flex-end;
 
 	@media ${baseTheme.media.laptop} {
@@ -53,7 +53,7 @@ const PaginationWrapper = styled.div`
 
 	@media ${baseTheme.media.mobile} {
 		align-self: center;
-		gap: 4px;
+		gap: ${baseTheme.gap.xs};
 	}
 `
 
@@ -62,7 +62,7 @@ const Page = styled.div<Props>`
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-	font-size: 18px;
+	font-size: ${baseTheme.fontSize.s};
 	line-height: 128%;
 	width: 30px;
 	height: 30px;

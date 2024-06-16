@@ -8,7 +8,7 @@ type Props = {
 	path: string
 }
 
-const HeaderTab = ({ tabText, tabIcon, path }: Props) => {
+export const HeaderTab = ({ tabText, tabIcon, path }: Props) => {
 	return (
 		<NavLink to={path}>
 			<Tab>
@@ -18,5 +18,3 @@ const HeaderTab = ({ tabText, tabIcon, path }: Props) => {
 		</NavLink>
 	)
 }
-
-export default HeaderTab
