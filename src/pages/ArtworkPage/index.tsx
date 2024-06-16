@@ -21,13 +21,12 @@ import {
 } from './styled'
 
 export const ArtworkPage = () => {
-	const { id } = useParams<{ id: string }>()
-
+	const { id: paramId } = useParams<{ id: string }>()
 	const { checkIsFavorite, toggleFavorite } = useFavoritesContext()
 
-	const a = id ? +id : ''
+	const artId = paramId ? +paramId : ''
 
-	const fetchArtwork = () => getDetailedArtwork(a)
+	const fetchArtwork = () => getDetailedArtwork(artId)
 
 	const {
 		data: artwork,
@@ -36,6 +35,7 @@ export const ArtworkPage = () => {
 	} = useFetchData<Artwork>(fetchArtwork, [])
 
 	const imageUrl = artwork && getImageUrl(artwork.image_id)
+
 	if (isLoading) return <Loader />
 
 	if (isError || !artwork)
