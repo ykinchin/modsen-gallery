@@ -25,7 +25,9 @@ export const ArtworkPage = () => {
 
 	const { checkIsFavorite, toggleFavorite } = useFavoritesContext()
 
-	const fetchArtwork = () => getDetailedArtwork(+id || '')
+	const a = id ? +id : ''
+
+	const fetchArtwork = () => getDetailedArtwork(a)
 
 	const {
 		data: artwork,
@@ -34,19 +36,15 @@ export const ArtworkPage = () => {
 	} = useFetchData<Artwork>(fetchArtwork, [])
 
 	const imageUrl = artwork && getImageUrl(artwork.image_id)
+	if (isLoading) return <Loader />
 
-	if (isLoading) {
-		return <Loader />
-	}
-
-	if (isError || !artwork) {
+	if (isError || !artwork)
 		return (
 			<SectionTitle
-				title='Artwork is not available right now'
+				title='Artwork is not availible right now'
 				subtitle='Browse more Artworks'
 			/>
 		)
-	}
 
 	return (
 		<ArtworkSection>
