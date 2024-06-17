@@ -1,5 +1,6 @@
 import { Loader } from '@components/loader'
 import { SectionTitle } from '@components/sectionTitle'
+import { SortOption } from '@sharedTypes/apiTypes'
 import { getArtworksByQuery } from '@utils/api'
 import { searchValidationSchema } from '@utils/searchValidation'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
@@ -18,34 +19,24 @@ import {
 } from './styled'
 
 export const ResultsPage = () => {
-	const [sortBy, setSortBy] = useState<'artist_display' | 'title'>(
-		'artist_display'
-	)
+	const [sortBy, setSortBy] = useState<SortOption>({})
 	const navigate = useNavigate()
 
 	const location = useLocation()
 	const searchParams = new URLSearchParams(location.search)
 	const query = searchParams.get('query')
 
-	const fetchArtworksByQuery = () => getArtworksByQuery(query || '')
+	const fetchArtworksByQuery = () => getArtworksByQuery(query || '', sortBy)
 
 	const {
 		data: result,
 		isLoading,
 		isError
-	} = useFetchData(fetchArtworksByQuery, [query])
+	} = useFetchData(fetchArtworksByQuery, [query, sortBy])
 
-	const handleSort = (sortBy: 'artist_display' | 'title') => {
+	const handleSort = (sortBy: SortOption) => {
 		setSortBy(sortBy)
 	}
-
-	const sortedResult = result?.sort((a, b) => {
-		if (sortBy === 'artist_display') {
-			return a.artist_display.localeCompare(b.artist_display)
-		} else {
-			return a.title.localeCompare(b.title)
-		}
-	})
 
 	if (isLoading) {
 		return <Loader />
@@ -62,11 +53,11 @@ export const ResultsPage = () => {
 
 	return (
 		<>
-			{sortedResult && sortedResult.length > 0 ? (
+			{result && result.length > 0 ? (
 				<ResultPage>
 					<FormWrapper>
 						<Formik
-							initialValues={{ search: '' }}
+							initialValues={{ search: query }}
 							validationSchema={searchValidationSchema}
 							onSubmit={values =>
 								navigate(`/results/search?query=${values.search}`)
@@ -91,20 +82,26 @@ export const ResultsPage = () => {
 					</FormWrapper>
 					<SortToggle>
 						<SortButton
-							$active={sortBy === 'artist_display'}
-							onClick={() => handleSort('artist_display')}
+							$active={Object.keys(sortBy).length === 0}
+							onClick={() => handleSort({})}
 						>
-							Sort by Artist
+							Sort by Latest update
 						</SortButton>
 						<SortButton
-							$active={sortBy === 'title'}
-							onClick={() => handleSort('title')}
+							$active={'date_start' in sortBy}
+							onClick={() => handleSort({ date_start: 'desc' })}
+						>
+							Sort by date
+						</SortButton>
+						<SortButton
+							$active={'title.keyword' in sortBy}
+							onClick={() => handleSort({ 'title.keyword': 'asc' })}
 						>
 							Sort by Title
 						</SortButton>
 					</SortToggle>
 					<ResultWrapper>
-						{sortedResult.map(({ id, title, artist_display }) => (
+						{result.map(({ id, title, artist_display }) => (
 							<li
 								key={id}
 								onClick={() => navigate(`/artwork/${id}`)}

@@ -2,7 +2,8 @@ import {
 	ArtworksById,
 	ArtworksResponse,
 	SearchResult,
-	SingleArtwork
+	SingleArtwork,
+	SortOption
 } from 'src/sharedTypes/apiTypes'
 import { axiosInstance } from './axiosConfing'
 
@@ -10,10 +11,10 @@ export const getArtworks = async (
 	page: number,
 	limit: number
 ): Promise<ArtworksResponse> => {
-	const response = await axiosInstance.get<ArtworksResponse>('/artworks', {
+	const { data } = await axiosInstance.get<ArtworksResponse>('/artworks', {
 		params: { page, limit }
 	})
-	return response.data
+	return data
 }
 
 export const getArtworkById = async (
@@ -28,18 +29,24 @@ export const getArtworkById = async (
 export const getDetailedArtwork = async (
 	id: number
 ): Promise<SingleArtwork> => {
-	const response = await axiosInstance.get<SingleArtwork>(`/artworks/${id}`)
-	return response.data
+	const { data } = await axiosInstance.get<SingleArtwork>(`/artworks/${id}`)
+	return data
 }
 
 export const getArtworksByQuery = async (
-	query: string
+	query: string,
+	sortBy?: SortOption
 ): Promise<SearchResult> => {
-	const response = await axiosInstance.get<SearchResult>('/artworks/search', {
+	const { data } = await axiosInstance.get<SearchResult>('/artworks/search', {
 		params: {
 			q: query,
-			fields: 'id,title,artist_display,image_url'
+			fields: 'id,title,artist_display,image_url',
+			multi_match: {
+				query,
+				fields: ['artist_display', 'title']
+			},
+			sort: sortBy
 		}
 	})
-	return response.data
+	return data
 }

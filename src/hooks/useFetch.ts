@@ -25,11 +25,11 @@ const useFetchData = <T>(
 			}
 
 			try {
-				const response = await fetchFunction()
-				setData(response.data)
+				const { data } = await fetchFunction()
+				setData(data)
 
 				if (cacheKey) {
-					cache.current[cacheKey] = response.data
+					cache.current[cacheKey] = data
 				}
 			} catch (error) {
 				setIsError(true)

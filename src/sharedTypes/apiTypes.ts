@@ -63,3 +63,5 @@ type ArtistId = number
 type ArtistTitle = string
 
 type ClassificationTitle = string
+
+export type SortOption = Record<string, 'asc' | 'desc'>
