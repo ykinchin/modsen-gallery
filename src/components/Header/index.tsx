@@ -14,13 +14,13 @@ export const Header = () => {
 	const [isMenuOpened, setIsMenuOpened] = useState(false)
 	const isAboveMediumScreens = useMediaQuery('(min-width:768px)')
 
-	const handleMenuToggle = () => {
+	const handleMenuToggle = useCallback(() => {
 		setIsMenuOpened(!isMenuOpened)
-	}
+	}, [isMenuOpened, setIsMenuOpened])
 
 	const handleMenuClose = useCallback(() => {
 		setIsMenuOpened(false)
-	}, [])
+	}, [setIsMenuOpened])
 
 	useClickOutside(outsideRef, handleMenuClose)
 

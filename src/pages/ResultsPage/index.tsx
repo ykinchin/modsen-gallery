@@ -1,24 +1,14 @@
 import { Loader } from '@components/loader'
+import { ResultPageForm } from '@components/resultPageForm'
 import { SectionTitle } from '@components/sectionTitle'
 import { SortOption } from '@sharedTypes/apiTypes'
 import { getArtworksByQuery } from '@utils/api'
-import { searchValidationSchema } from '@utils/searchValidation'
-import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { useState } from 'react'
-import { CiSearch } from 'react-icons/ci'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useFetchData from 'src/hooks/useFetch'
-import {
-	FieldWrapper,
-	FormWrapper,
-	ResultPage,
-	ResultWrapper,
-	SearchButton,
-	SortButton,
-	SortToggle
-} from './styled'
+import { ResultPage, ResultWrapper, SortButton, SortToggle } from './styled'
 
-export const ResultsPage = () => {
+const ResultsPage = () => {
 	const [sortBy, setSortBy] = useState<SortOption>({})
 	const navigate = useNavigate()
 
@@ -55,31 +45,7 @@ export const ResultsPage = () => {
 		<>
 			{result && result.length > 0 ? (
 				<ResultPage>
-					<FormWrapper>
-						<Formik
-							initialValues={{ search: query }}
-							validationSchema={searchValidationSchema}
-							onSubmit={values =>
-								navigate(`/results/search?query=${values.search}`)
-							}
-						>
-							<Form>
-								<FieldWrapper>
-									<Field
-										name='search'
-										id='search'
-										placeholder='Search Art, Artist, Work...'
-									/>
-									<SearchButton type='submit'>
-										<CiSearch size={24} />
-									</SearchButton>
-								</FieldWrapper>
-								<ErrorMessage name='search'>
-									{error => <span>{error}</span>}
-								</ErrorMessage>
-							</Form>
-						</Formik>
-					</FormWrapper>
+					<ResultPageForm query={query} />
 					<SortToggle>
 						<SortButton
 							$active={Object.keys(sortBy).length === 0}
@@ -121,3 +87,5 @@ export const ResultsPage = () => {
 		</>
 	)
 }
+
+export default ResultsPage

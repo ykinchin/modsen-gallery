@@ -56,6 +56,7 @@ export const CarouselSection = () => {
 	useEffect(() => {
 		const fetchArtworks = async (page: number, limit: number) => {
 			setArtworks(Array(limit).fill({ isLoading: true, isError: false }))
+
 			try {
 				const response = await getArtworks(page, limit)
 				const preparedArtworks = response.data.map(artwork => ({

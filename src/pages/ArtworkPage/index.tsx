@@ -4,6 +4,7 @@ import { SectionTitle } from '@components/sectionTitle'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getDetailedArtwork } from '@utils/api'
 import { getImageUrl } from '@utils/imageUtils'
+import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useFavoritesContext } from 'src/context'
 import useFetchData from 'src/hooks/useFetch'
@@ -20,7 +21,7 @@ import {
 	YearTitle
 } from './styled'
 
-export const ArtworkPage = () => {
+const ArtworkPage = () => {
 	const { id } = useParams<{ id: string }>()
 	const { checkIsFavorite, toggleFavorite } = useFavoritesContext()
 
@@ -32,7 +33,10 @@ export const ArtworkPage = () => {
 		isError
 	} = useFetchData<Artwork>(fetchArtwork, [])
 
-	const imageUrl = artwork && getImageUrl(artwork.image_id)
+	const imageUrl = useMemo(
+		() => artwork && getImageUrl(artwork.image_id),
+		[artwork?.image_id]
+	)
 
 	if (isLoading) return <Loader />
 
@@ -87,3 +91,5 @@ export const ArtworkPage = () => {
 		</ArtworkSection>
 	)
 }
+
+export default ArtworkPage

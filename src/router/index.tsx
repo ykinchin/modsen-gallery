@@ -1,17 +1,24 @@
-import { AppLayout } from '@components/appLayout'
+import { Loader } from '@components/loader'
 import { PATHS } from '@constants/routes'
-import { ArtworkPage } from '@pages/artworkPage'
-import { FavoritesPage } from '@pages/favoritesPage'
-import { HomePage } from '@pages/homePage'
-import { ResultsPage } from '@pages/resultsPage'
+import { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
+
+const AppLayout = lazy(() => import('@components/appLayout'))
+const HomePage = lazy(() => import('@pages/homePage'))
+const FavoritesPage = lazy(() => import('@pages/favoritesPage'))
+const ArtworkPage = lazy(() => import('@pages/artworkPage'))
+const ResultsPage = lazy(() => import('@pages/resultsPage'))
 
 export const AppRouter = () => {
 	return (
 		<Routes>
 			<Route
 				path={PATHS.main}
-				element={<AppLayout />}
+				element={
+					<Suspense fallback={<Loader />}>
+						<AppLayout />
+					</Suspense>
+				}
 			>
 				<Route
 					index

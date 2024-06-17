@@ -3,7 +3,7 @@ import { Header } from '@components/header'
 import { Outlet } from 'react-router-dom'
 import { Content, Layout } from './styled'
 
-export const AppLayout = () => {
+const AppLayout = () => {
 	return (
 		<Layout>
 			<Header />
@@ -14,3 +14,5 @@ export const AppLayout = () => {
 		</Layout>
 	)
 }
+
+export default AppLayout

@@ -2,7 +2,7 @@ import { CarouselSection } from '@components/carouselSection'
 import { GallerySection } from '@components/gallerySection'
 import { SearchSection } from '@components/searchSection'
 
-export const HomePage = () => {
+const HomePage = () => {
 	return (
 		<>
 			<SearchSection />
@@ -11,3 +11,5 @@ export const HomePage = () => {
 		</>
 	)
 }
+
+export default HomePage

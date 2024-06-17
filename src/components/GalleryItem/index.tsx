@@ -2,7 +2,7 @@ import { AddButton } from '@components/addButton'
 import { AppLogo } from '@components/appLogo'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getImageUrl } from '@utils/imageUtils'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFavoritesContext } from 'src/context'
 import {
@@ -27,7 +27,7 @@ export const GalleryItem = ({ artwork }: Props) => {
 		artwork
 
 	const navigate = useNavigate()
-	const imageUrl = getImageUrl(image_id)
+	const imageUrl = useMemo(() => getImageUrl(image_id), [image_id])
 	const [hovered, setHovered] = useState(false)
 
 	const { checkIsFavorite, toggleFavorite } = useFavoritesContext()

@@ -8,7 +8,7 @@ import { useFavoritesContext } from 'src/context'
 import useFetchData from 'src/hooks/useFetch'
 import { FavoritePage, GridContainer, PageTitle } from './styled'
 
-export const FavoritesPage = () => {
+const FavoritesPage = () => {
 	const { favorites } = useFavoritesContext()
 
 	const fetchFavorites = () => getArtworkById(favorites)
@@ -64,3 +64,5 @@ export const FavoritesPage = () => {
 		</FavoritePage>
 	)
 }
+
+export default FavoritesPage
