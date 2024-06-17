@@ -11,7 +11,7 @@ const ToggleWrapper = styled.div`
 
 const SlideMenuWrapper = styled.div<Props>`
 	position: fixed;
-	top: 124px;
+	top: 127px;
 	right: 0;
 	height: max-content;
 	width: ${baseTheme.width.full};
@@ -20,10 +20,10 @@ const SlideMenuWrapper = styled.div<Props>`
 		$isOpened ? 'translateX(0)' : 'translateX(100%)'};
 	transition: transform 0.3s ease-in-out;
 	z-index: 30;
-	padding: 32px 80px;
+	padding: 16px 80px;
 
 	@media ${baseTheme.media.mobile} {
-		top: 90px;
+		top: 95px;
 	}
 `
 
@@ -33,4 +33,5 @@ const MenuContent = styled.div`
 	gap: ${baseTheme.gap.normal};
 	color: 'white';
 `
+
 export { MenuContent, SlideMenuWrapper, ToggleWrapper }

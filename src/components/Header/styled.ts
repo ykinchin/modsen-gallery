@@ -7,10 +7,11 @@ type Props = {
 
 const HeaderWrapper = styled.header<Props>`
 	background: ${baseTheme.colors.headerGradient};
+	width: ${baseTheme.width.full};
+	height: 127px;
 	padding: 32px 320px;
 	z-index: 30;
-	width: ${baseTheme.width.full};
-	position: ${({ $isOpened }) => ($isOpened ? 'fixed' : 'relative')};
+	position: relative;
 
 	@media ${baseTheme.media.laptop} {
 		padding: 32px 160px;
@@ -18,10 +19,12 @@ const HeaderWrapper = styled.header<Props>`
 
 	@media ${baseTheme.media.tablet} {
 		padding: 32px 80px;
+		position: fixed;
 	}
 
 	@media ${baseTheme.media.mobile} {
 		padding: 16px 40px;
+		height: 95px;
 	}
 `
 

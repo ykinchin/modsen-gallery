@@ -12,7 +12,12 @@ type Props = {
 export const BurgerMenu = ({ onClick, isOpened }: Props) => {
 	return (
 		<>
-			<ToggleWrapper onClick={onClick}>
+			<ToggleWrapper
+				onClick={e => {
+					e.stopPropagation()
+					onClick()
+				}}
+			>
 				{isOpened ? <AppIcon Icon={BiX} /> : <AppIcon Icon={BiMenu} />}
 			</ToggleWrapper>
 			<SlideMenuWrapper $isOpened={isOpened}>
@@ -21,11 +26,13 @@ export const BurgerMenu = ({ onClick, isOpened }: Props) => {
 						path={PATHS.main}
 						tabIcon={<AppIcon Icon={BiHomeAlt} />}
 						tabText='Home'
+						onClick={onClick}
 					/>
 					<HeaderTab
 						path={PATHS.favorites}
 						tabIcon={<AppIcon Icon={BiBookmark} />}
 						tabText='Your favorites'
+						onClick={onClick}
 					/>
 				</MenuContent>
 			</SlideMenuWrapper>

@@ -22,7 +22,12 @@ const Content = styled.main`
 
 	@media ${baseTheme.media.tablet} {
 		padding: 40px;
+		margin-top: 127px;
 		gap: ${baseTheme.gap.xl};
+	}
+
+	@media ${baseTheme.media.mobile} {
+		margin-top: 95px;
 	}
 `
 
