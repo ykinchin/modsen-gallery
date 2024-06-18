@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-type FetchFunction<T> = () => Promise<{ data: T }>
+export type FetchFunction<T> = () => Promise<{ data: T }>
 
 const useFetchData = <T>(
 	fetchFunction: FetchFunction<T>,
