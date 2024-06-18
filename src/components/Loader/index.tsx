@@ -2,7 +2,7 @@ import { LoaderRing, LoaderWrapper } from './styled'
 
 export const Loader = () => {
 	return (
-		<LoaderWrapper>
+		<LoaderWrapper data-testid='loader'>
 			<LoaderRing />
 			<LoaderRing />
 			<LoaderRing />
