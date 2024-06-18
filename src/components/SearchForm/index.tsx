@@ -44,7 +44,7 @@ export const SearchForm = () => {
 			/>
 		)
 	}
-	console.log(searchResults)
+
 	return (
 		<FormWrapper
 			onFocus={handleInputFocus}
