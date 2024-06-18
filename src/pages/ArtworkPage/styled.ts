@@ -29,6 +29,20 @@ const ImageWrapper = styled.div`
 	width: max-content;
 `
 
+const LogoWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 497px;
+	height: 570px;
+	border: 1px solid ${baseTheme.colors.higlight};
+
+	@media ${baseTheme.media.laptop} {
+		width: 330px;
+		height: 420px;
+	}
+`
+
 const ButtonWrapper = styled.div`
 	width: max-content;
 	position: absolute;
@@ -117,6 +131,7 @@ export {
 	ButtonWrapper,
 	ContentWrapper,
 	ImageWrapper,
+	LogoWrapper,
 	RowWrapper,
 	YearTitle
 }

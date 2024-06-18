@@ -27,7 +27,7 @@ export const GalleryItem = ({ artwork }: Props) => {
 		artwork
 
 	const navigate = useNavigate()
-	const imageUrl = useMemo(() => getImageUrl(image_id), [image_id])
+	const imageUrl = useMemo(() => image_id && getImageUrl(image_id), [image_id])
 	const [hovered, setHovered] = useState(false)
 
 	const { checkIsFavorite, toggleFavorite } = useFavoritesContext()
@@ -51,14 +51,20 @@ export const GalleryItem = ({ artwork }: Props) => {
 		>
 			<FlexContainer>
 				<ImageContainer>
-					<Images
-						src={imageUrl}
-						alt={title || 'Artwork'}
-						$hovered={hovered}
-					/>
-					<LogoContainer $hovered={hovered}>
+					{imageUrl ? (
+						<>
+							<Images
+								src={imageUrl}
+								alt={title || 'Artwork'}
+								$hovered={hovered}
+							/>
+							<LogoContainer $hovered={hovered}>
+								<AppLogo />
+							</LogoContainer>
+						</>
+					) : (
 						<AppLogo />
-					</LogoContainer>
+					)}
 				</ImageContainer>
 
 				<ContentContainer>

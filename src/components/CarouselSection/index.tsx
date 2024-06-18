@@ -30,18 +30,18 @@ export const CarouselSection = () => {
 	const [artworks, setArtworks] = useState<Artwork[]>([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState<number | null>(null)
-	const [limit, setLimit] = useState(
-		window.innerWidth < SMALL_SCREEN_WIDTH ? 1 : 3
-	)
 	const pagesToShow = generatePages(currentPage, totalPages)
+
+	const currentPageLimit =
+		window.innerWidth < SMALL_SCREEN_WIDTH
+			? LimitPerPage.Small
+			: LimitPerPage.Medium
+
+	const [limit, setLimit] = useState(currentPageLimit)
 
 	useEffect(() => {
 		const handleResize = () => {
-			setLimit(
-				window.innerWidth < SMALL_SCREEN_WIDTH
-					? LimitPerPage.Small
-					: LimitPerPage.Medium
-			)
+			setLimit(currentPageLimit)
 		}
 
 		window.addEventListener('resize', handleResize)
@@ -103,23 +103,24 @@ export const CarouselSection = () => {
 			/>
 
 			<CarouselContainer>
-				{artworks.map(({ id, isLoading, isError, ...rest }, index) => (
-					<ItemWrapper
-						key={id || index}
-						onClick={() => navigate(`/artwork/${id}`)}
-					>
-						{isLoading ? (
-							<Loader />
-						) : isError ? (
-							<ErrorWrapper>
-								<AppLogo isError />
-								<p>Failed to load artwork</p>
-							</ErrorWrapper>
-						) : (
-							<CarouselItem artwork={{ id, isLoading, isError, ...rest }} />
-						)}
-					</ItemWrapper>
-				))}
+				{artworks &&
+					artworks.map(({ id, isLoading, isError, ...rest }, index) => (
+						<ItemWrapper
+							key={id || index}
+							onClick={() => navigate(`/artwork/${id}`)}
+						>
+							{isLoading ? (
+								<Loader />
+							) : isError ? (
+								<ErrorWrapper>
+									<AppLogo isError />
+									<p>Failed to load artwork</p>
+								</ErrorWrapper>
+							) : (
+								<CarouselItem artwork={{ id, isLoading, isError, ...rest }} />
+							)}
+						</ItemWrapper>
+					))}
 			</CarouselContainer>
 
 			<PaginationWrapper>

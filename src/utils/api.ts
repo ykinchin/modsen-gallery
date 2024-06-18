@@ -34,9 +34,13 @@ export const getDetailedArtwork = async (
 }
 
 export const getArtworksByQuery = async (
-	query: string,
+	query: string | null,
 	sortBy?: SortOption
-): Promise<SearchResult> => {
+): Promise<SearchResult | { data: [] }> => {
+	if (!query) {
+		return { data: [] }
+	}
+
 	const { data } = await axiosInstance.get<SearchResult>('/artworks/search', {
 		params: {
 			q: query,

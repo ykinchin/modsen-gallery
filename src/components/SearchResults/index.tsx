@@ -20,8 +20,8 @@ export const SearchResults = ({ result, isLoading }: Props) => {
 						key={id}
 						onClick={() => navigate(`/artwork/${id}`)}
 					>
-						{title}
-						<span>{artist_display}</span>
+						{title || 'Unknown title'}
+						<span>{artist_display || 'Unknown artist'}</span>
 					</li>
 				))
 			)}

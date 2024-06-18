@@ -2,6 +2,7 @@ import { SearchInput } from '@components/searchInput'
 import { SearchResults } from '@components/searchResults'
 import { SectionTitle } from '@components/sectionTitle'
 import { getArtworksByQuery } from '@utils/api'
+import { initialValue } from '@utils/searchValidation'
 import { Form, Formik } from 'formik'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -10,12 +11,12 @@ import useFetchData from 'src/hooks/useFetch'
 import { FormWrapper } from './styled'
 
 export const SearchForm = () => {
-	const [searchValue, setSearchValue] = useState<string>('')
+	const [searchValue, setSearchValue] = useState<string | null>(null)
 	const debouncedSearch = useDebounce(searchValue, 300)
 	const [isResultOpened, setIsResultOpened] = useState(false)
 	const navigate = useNavigate()
 
-	const fetchArtworksByQuery = () => getArtworksByQuery(debouncedSearch ?? '')
+	const fetchArtworksByQuery = () => getArtworksByQuery(debouncedSearch)
 
 	const {
 		data: searchResults,
@@ -43,19 +44,19 @@ export const SearchForm = () => {
 			/>
 		)
 	}
-
+	console.log(searchResults)
 	return (
 		<FormWrapper
 			onFocus={handleInputFocus}
 			onBlur={handleInputBlur}
 		>
 			<Formik
-				initialValues={{ search: '' }}
+				initialValues={initialValue}
 				onSubmit={() => navigate(`/results/search?query=${searchValue}`)}
 			>
 				<Form>
 					<SearchInput
-						value={searchValue}
+						value={searchValue || ''}
 						onChange={handleInputChange}
 						name='search'
 						id='search'

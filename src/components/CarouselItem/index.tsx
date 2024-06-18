@@ -2,7 +2,7 @@ import { AddButton } from '@components/addButton'
 import { AppLogo } from '@components/appLogo'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getImageUrl } from '@utils/imageUtils'
-import React, { memo, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useFavoritesContext } from 'src/context'
 import {
 	Author,
@@ -19,13 +19,10 @@ type Props = {
 	artwork: Artwork
 }
 
-export const CarouselItem = memo(({ artwork }: Props) => {
-	const { id, title, artist_title, date_end, image_id } = useMemo(
-		() => artwork,
-		[]
-	)
+export const CarouselItem = ({ artwork }: Props) => {
+	const { id, title, artist_title, date_end, image_id } = artwork
 
-	const imageUrl = useMemo(() => getImageUrl(image_id), [image_id])
+	const imageUrl = useMemo(() => image_id && getImageUrl(image_id), [image_id])
 	const { checkIsFavorite, toggleFavorite } = useFavoritesContext()
 
 	const handleClick = (
@@ -60,4 +57,4 @@ export const CarouselItem = memo(({ artwork }: Props) => {
 			</FlexContainer>
 		</>
 	)
-})
+}
