@@ -1,4 +1,4 @@
-import { baseTheme } from '@styles/theme' // Путь к вашему теме
+import { baseTheme } from '@styles/theme'
 import { render, screen } from '@testing-library/react'
 import 'jest-styled-components'
 import { AppIcon } from '.'
@@ -29,7 +29,7 @@ describe('AppIcon', () => {
 		expect(iconElement).toHaveStyle(`color: ${baseTheme.colors.higlight}`)
 	})
 
-	test('renders icon with custom size and color', () => {
+	test('Render icon with custom size and color', () => {
 		const customSize = 32
 		const customColor = '#ff0000'
 
