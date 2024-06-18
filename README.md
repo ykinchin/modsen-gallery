@@ -9,35 +9,40 @@
 
 ## API:
 
+#Деплой 
+https://m-art-gallery.netlify.app
+
 В приложении использовано Art Institute of Chicago API
 [ART API](https://api.artic.edu/docs/#introduction)
 
 ## Реализованный основной функционал функционал
 
-[x] Получение данных о картинах с внешнего API;
-[x] Отображение списка картин с возможностью пагинации;
-[x] Реализация формы поиска с валидацией введенных данных;
-[x] Использование роутинга для разделения страниц приложения;
-[x] Реализация дебаунса для поисковой формы;
-[x] Возможность добавления картины в список избранных с сохранением их в LocalStorage;
-[x] Возможность просмотра более детальной информации о картине;
-[x] Интерфейс для просмотра списка избранных и возможности удаления из списка;
-[x] Реализация возможности сортировки картин по различным критериям (по дате или алфавиту).
+
+=======
+-   [x] Получение данных о картинах с внешнего [API](https://github.com/ykinchin/modsen-gallery/blob/master/src/utils/api.ts);
+-   [x] Отображение [списка картинс возможностью пагинации](https://github.com/ykinchin/modsen-gallery/blob/master/src/components/CarouselSection/index.tsx) ;
+-   [x] Реализация [формы поиска с валидацией введенных данных](https://github.com/ykinchin/modsen-gallery/blob/master/src/pages/ResultsPage/index.tsx);
+-   [x] Использование [роутинга](https://github.com/ykinchin/modsen-gallery/blob/master/src/router/AppRouter.tsx) для разделения страниц приложения;
+-   [x] Реализация [дебаунса](https://github.com/ykinchin/modsen-gallery/blob/master/src/components/SearchForm/index.tsx) для поисковой формы;
+-   [x] Возможность добавления картины в [список избранных с сохранением их в LocalStorage](https://github.com/ykinchin/modsen-gallery/blob/master/src/context/FavoritesContext.tsx);
+-   [x] Возможность просмотра более [детальной информации о картине](https://github.com/ykinchin/modsen-gallery/blob/master/src/pages/ArtworkPage/index.tsx);
+-   [x] [Интерфейс для просмотра списка избранных](https://github.com/ykinchin/modsen-gallery/blob/master/src/pages/FavoritesPage/index.tsx) и возможности удаления из списка;
+-   [x] Реализация возможности [сортировки картин по различным критериям (по дате или алфавиту)](https://github.com/ykinchin/modsen-gallery/blob/master/src/pages/ResultsPage/index.tsx).
 
 ## Дополнительный функционал
 
-[x] При загрузке картин реализован Loader;
-[x] Оптимизация дизайна под мобильные устройства (до 390px);
-[x] Реализация burger-menu;
-[x] Использование TypeScript для типизирования и уменьшения количества потенциальных багов;
-[x] Обработка ошибок через паттерн **_Error Boundaries_**;
-[x] Использование алиасов для импортирования файлов;
-[x] Покрытие тестами 30% функциональности приложения;
-[x] Организация файловой структуры react приложения. Ссылка на структуру: [Структура проекта](https://github.com/mkrivel/structure);
-[x] Деплой приложения на платформу GitHub Pages или иные другие (Netlify, Vercel);
-[x] Настройка конфигурации eslint, prettier, husky;
-[x] Использование корректного GitFlow в проекте;
-[x] Использование сторонних библиотек для стилей - запрещены, кроме рекомендуемых в пункте “Используемые технологии”.
+-   [x] При загрузке картин реализован [Loader](https://github.com/ykinchin/modsen-gallery/tree/master/src/components/Loader);
+-   [x] Оптимизация дизайна под [мобильные устройства](https://github.com/ykinchin/modsen-gallery/blob/master/src/styles/theme.ts);
+-   [x] Реализация [burger-menu](https://github.com/ykinchin/modsen-gallery/blob/master/src/components/BurgerMenu/index.tsx);
+-   [x] Использование [TypeScript](https://github.com/ykinchin/modsen-gallery/blob/master/src/sharedTypes/apiTypes.ts) для типизирования и уменьшения количества потенциальных багов;
+-   [x] Обработка ошибок через паттерн [**_Error Boundaries_**](https://github.com/ykinchin/modsen-gallery/blob/master/src/components/ErrorBoundary/index.tsx);
+-   [x] Использование [алиасов](https://github.com/ykinchin/modsen-gallery/blob/master/tsconfig.json) для импортирования файлов;
+-   [x] Покрытие тестами 30% функциональности приложения;
+-   [x] Организация файловой [структуры](https://github.com/ykinchin/modsen-gallery/tree/master/src) react приложения;
+-   [x] Деплой приложения на платформу [Netlify](https://m-art-gallery.netlify.app);
+-   [x] Настройка конфигурации [eslint](https://github.com/ykinchin/modsen-gallery/blob/master/.eslintrc.cjs), [prettier](https://github.com/ykinchin/modsen-gallery/blob/master/.prettierrc), [husky](https://github.com/ykinchin/modsen-gallery/tree/master/.husky);
+-   [x] Использование корректного [GitFlow](https://github.com/ykinchin/modsen-gallery/commits/develop/) в проекте;
+-   [x] Использование [styled-components](https://github.com/ykinchin/modsen-gallery/blob/master/src/components/GalleryItem/styled.ts) для стилизации приложения.
 
 ## Описание экранов
 
