@@ -1,4 +1,5 @@
 import { Loader } from '@components/loader'
+import { LoaderFlex } from '@components/loader/styled'
 import { PATHS } from '@constants/routes'
 import { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -15,7 +16,13 @@ export const AppRouter = () => {
 			<Route
 				path={PATHS.main}
 				element={
-					<Suspense fallback={<Loader />}>
+					<Suspense
+						fallback={
+							<LoaderFlex>
+								<Loader />
+							</LoaderFlex>
+						}
+					>
 						<AppLayout />
 					</Suspense>
 				}
