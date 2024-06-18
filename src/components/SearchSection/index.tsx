@@ -1,7 +1,7 @@
-import SearchForm from '@components/SearchForm'
+import { SearchForm } from '@components/searchForm'
 import { InputSectionWrapper, InputTitle } from './styled'
 
-const SearchSection = () => {
+export const SearchSection = () => {
 	return (
 		<InputSectionWrapper>
 			<InputTitle>
@@ -11,5 +11,3 @@ const SearchSection = () => {
 		</InputSectionWrapper>
 	)
 }
-
-export default SearchSection

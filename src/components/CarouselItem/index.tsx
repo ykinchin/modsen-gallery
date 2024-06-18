@@ -1,8 +1,9 @@
-import AddButton from '@components/AddButton'
-import ErrorLogo from '@components/ErrorLogo'
+import { AddButton } from '@components/addButton'
+import { AppLogo } from '@components/appLogo'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getImageUrl } from '@utils/imageUtils'
-import { useFavorites } from 'src/context/FavoritesContext'
+import React, { useMemo } from 'react'
+import { useFavoritesContext } from 'src/context'
 import {
 	Author,
 	Background,
@@ -18,9 +19,11 @@ type Props = {
 	artwork: Artwork
 }
 
-const CarouselItem = ({ artwork }: Props) => {
-	const imageUrl = getImageUrl(artwork.image_id)
-	const { checkIsFavorite, toggleFavorite } = useFavorites()
+export const CarouselItem = ({ artwork }: Props) => {
+	const { id, title, artist_title, date_end, image_id } = artwork
+
+	const imageUrl = useMemo(() => image_id && getImageUrl(image_id), [image_id])
+	const { checkIsFavorite, toggleFavorite } = useFavoritesContext()
 
 	const handleClick = (
 		id: number,
@@ -36,24 +39,22 @@ const CarouselItem = ({ artwork }: Props) => {
 				<Background url={imageUrl} />
 			) : (
 				<ErrorContainter>
-					<ErrorLogo />
+					<AppLogo isError />
 				</ErrorContainter>
 			)}
 			<FlexContainer>
 				<ContentContainer>
 					<TitleWrapper>
-						<Title>{artwork.title || 'Unknown title'}</Title>
-						<Author>{artwork.artist_title || 'Unknown author'}</Author>
+						<Title>{title || 'Unknown title'}</Title>
+						<Author>{artist_title || 'Unknown author'}</Author>
 					</TitleWrapper>
-					<Description>{artwork.date_end}</Description>
+					<Description>{date_end}</Description>
 				</ContentContainer>
 				<AddButton
-					isFavorite={checkIsFavorite(artwork.id)}
-					onClick={event => handleClick(artwork.id, event)}
+					isFavorite={checkIsFavorite(id)}
+					onClick={event => handleClick(id, event)}
 				/>
 			</FlexContainer>
 		</>
 	)
 }
-
-export default CarouselItem

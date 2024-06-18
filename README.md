@@ -17,6 +17,8 @@ https://m-art-gallery.netlify.app
 
 ## Реализованный основной функционал функционал
 
+
+=======
 -   [x] Получение данных о картинах с внешнего [API](https://github.com/ykinchin/modsen-gallery/blob/master/src/utils/api.ts);
 -   [x] Отображение [списка картинс возможностью пагинации](https://github.com/ykinchin/modsen-gallery/blob/master/src/components/CarouselSection/index.tsx) ;
 -   [x] Реализация [формы поиска с валидацией введенных данных](https://github.com/ykinchin/modsen-gallery/blob/master/src/pages/ResultsPage/index.tsx);
@@ -35,7 +37,7 @@ https://m-art-gallery.netlify.app
 -   [x] Использование [TypeScript](https://github.com/ykinchin/modsen-gallery/blob/master/src/sharedTypes/apiTypes.ts) для типизирования и уменьшения количества потенциальных багов;
 -   [x] Обработка ошибок через паттерн [**_Error Boundaries_**](https://github.com/ykinchin/modsen-gallery/blob/master/src/components/ErrorBoundary/index.tsx);
 -   [x] Использование [алиасов](https://github.com/ykinchin/modsen-gallery/blob/master/tsconfig.json) для импортирования файлов;
--   [] Покрытие тестами 30% функциональности приложения;
+-   [x] Покрытие тестами 30% функциональности приложения;
 -   [x] Организация файловой [структуры](https://github.com/ykinchin/modsen-gallery/tree/master/src) react приложения;
 -   [x] Деплой приложения на платформу [Netlify](https://m-art-gallery.netlify.app);
 -   [x] Настройка конфигурации [eslint](https://github.com/ykinchin/modsen-gallery/blob/master/.eslintrc.cjs), [prettier](https://github.com/ykinchin/modsen-gallery/blob/master/.prettierrc), [husky](https://github.com/ykinchin/modsen-gallery/tree/master/.husky);

@@ -28,10 +28,10 @@ a {
 }
 
 input {
-    width: 100%;
-    padding: 16px;
+    width: ${baseTheme.width.full};
+   	padding: ${baseTheme.padding.default};
     border-radius: 16px;
-    background: rgba(57, 57, 57, 0.05);
+    background:  ${baseTheme.colors.inputBackground};
     border: none;
     outline: none;
 }

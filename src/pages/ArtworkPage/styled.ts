@@ -7,19 +7,19 @@ type Props = {
 
 const ArtworkSection = styled.section`
 	display: flex;
-	gap: 80px;
-	width: 100%;
+	gap: ${baseTheme.gap.xl};
+	width: ${baseTheme.width.full};
 	max-width: 1280px;
 	font-family: ${baseTheme.fonts.secondary};
 	justify-content: start;
 
 	@media ${baseTheme.media.laptop} {
-		gap: 40px;
+		gap: ${baseTheme.gap.md};
 		justify-content: center;
 	}
 
 	@media ${baseTheme.media.tablet} {
-		gap: 20px;
+		gap: ${baseTheme.gap.m};
 		flex-direction: column;
 	}
 `
@@ -27,6 +27,20 @@ const ArtworkSection = styled.section`
 const ImageWrapper = styled.div`
 	position: relative;
 	width: max-content;
+`
+
+const LogoWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 497px;
+	height: 570px;
+	border: 1px solid ${baseTheme.colors.higlight};
+
+	@media ${baseTheme.media.laptop} {
+		width: 330px;
+		height: 420px;
+	}
 `
 
 const ButtonWrapper = styled.div`
@@ -57,30 +71,30 @@ const ContentWrapper = styled.div`
 	justify-content: space-between;
 
 	@media ${baseTheme.media.tablet} {
-		gap: 20px;
+		gap: ${baseTheme.gap.m};
 	}
 `
 
 const BlockWrapper = styled.div``
 const BlockTitle = styled.h2`
-	margin-bottom: 32px;
+	margin-bottom: ${baseTheme.marginBottom.l};
 	font-weight: 400;
-	font-size: 32px;
+	font-size: ${baseTheme.fontSize.l};
 
 	@media ${baseTheme.media.tablet} {
-		font-size: 24px;
-		margin-bottom: 16px;
+		font-size: ${baseTheme.fontSize.m};
+		margin-bottom: ${baseTheme.marginBottom.m};
 	}
 `
 const AuthorTitle = styled.h3`
-	margin-bottom: 16px;
+	margin-bottom: ${baseTheme.marginBottom.m};
 	font-weight: 400;
 	color: ${baseTheme.colors.higlight};
-	font-size: 24px;
+	font-size: ${baseTheme.fontSize.m};
 
 	@media ${baseTheme.media.tablet} {
-		font-size: 18px;
-		margin-bottom: 8px;
+		font-size: ${baseTheme.fontSize.s};
+		margin-bottom: ${baseTheme.marginBottom.s};
 	}
 `
 const YearTitle = styled.p`
@@ -88,9 +102,9 @@ const YearTitle = styled.p`
 `
 
 const RowWrapper = styled.p`
-	margin-bottom: 16px;
+	margin-bottom: ${baseTheme.marginBottom.m};
 	display: flex;
-	gap: 4px;
+	gap: ${baseTheme.gap.xs};
 
 	span {
 		color: ${baseTheme.colors.higlight};
@@ -98,7 +112,7 @@ const RowWrapper = styled.p`
 
 	@media ${baseTheme.media.tablet} {
 		max-width: 768px;
-		margin-bottom: 8px;
+		margin-bottom: ${baseTheme.marginBottom.s};
 		flex-direction: column;
 	}
 
@@ -117,6 +131,7 @@ export {
 	ButtonWrapper,
 	ContentWrapper,
 	ImageWrapper,
+	LogoWrapper,
 	RowWrapper,
 	YearTitle
 }

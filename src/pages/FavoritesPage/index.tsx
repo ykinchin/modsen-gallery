@@ -1,36 +1,23 @@
-import GalleryItem from '@components/GalleryItem'
-import Loader from '@components/Loader'
-import SectionTitle from '@components/SectionTitle'
-import { Artwork } from '@sharedTypes/apiTypes'
+import { GalleryItem } from '@components/galleryItem'
+import { Loader } from '@components/loader'
+import { SectionTitle } from '@components/sectionTitle'
+import { ArtworksById } from '@sharedTypes/apiTypes'
 import { getArtworkById } from '@utils/api'
-import { useEffect, useState } from 'react'
 import { BiBookmark } from 'react-icons/bi'
-import { useFavorites } from 'src/context/FavoritesContext'
+import { useFavoritesContext } from 'src/context'
+import useFetchData from 'src/hooks/useFetch'
 import { FavoritePage, GridContainer, PageTitle } from './styled'
 
 const FavoritesPage = () => {
-	const [artwork, setArtworks] = useState<Artwork[]>([])
-	const [isLoading, setIsLoading] = useState(true)
-	const [isError, setIsError] = useState(false)
-	const { favorites } = useFavorites()
+	const { favorites } = useFavoritesContext()
 
-	useEffect(() => {
-		const fetchArtworks = async () => {
-			try {
-				if (favorites.length > 0) {
-					const response = await getArtworkById(favorites)
-					setArtworks(response.data)
-				} else {
-					setArtworks([])
-				}
-			} catch (error) {
-				setIsError(true)
-			} finally {
-				setIsLoading(false)
-			}
-		}
-		fetchArtworks()
-	}, [favorites])
+	const fetchFavorites = () => getArtworkById(favorites)
+
+	const {
+		data: artwork,
+		isLoading,
+		isError
+	} = useFetchData<ArtworksById>(fetchFavorites, [favorites])
 
 	return (
 		<FavoritePage>
@@ -57,6 +44,7 @@ const FavoritesPage = () => {
 					subtitle='Browse more artworks'
 				/>
 			)}
+
 			{!isLoading && !isError && favorites.length > 0 && (
 				<div>
 					<SectionTitle
@@ -64,10 +52,10 @@ const FavoritesPage = () => {
 						subtitle='Your favorites list'
 					/>
 					<GridContainer>
-						{artwork.map(artwork => (
+						{artwork?.data.map(({ id, ...rest }) => (
 							<GalleryItem
-								key={artwork.id}
-								artwork={artwork}
+								key={id}
+								artwork={{ id, ...rest }}
 							/>
 						))}
 					</GridContainer>

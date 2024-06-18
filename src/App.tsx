@@ -1,8 +1,8 @@
-import AppErrorBoundary from '@components/ErrorBoundary'
+import { AppErrorBoundary } from '@components/errorBoundary'
 import { GlobalStyles } from '@styles/global'
-import AppRouter from './router/AppRouter'
+import { AppRouter } from './router'
 
-function App() {
+export function App() {
 	return (
 		<AppErrorBoundary>
 			<AppRouter />
@@ -10,5 +10,3 @@ function App() {
 		</AppErrorBoundary>
 	)
 }
-
-export default App

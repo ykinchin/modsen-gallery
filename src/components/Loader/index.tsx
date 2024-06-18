@@ -1,8 +1,8 @@
 import { LoaderRing, LoaderWrapper } from './styled'
 
-const Loader = () => {
+export const Loader = () => {
 	return (
-		<LoaderWrapper>
+		<LoaderWrapper data-testid='loader'>
 			<LoaderRing />
 			<LoaderRing />
 			<LoaderRing />
@@ -10,5 +10,3 @@ const Loader = () => {
 		</LoaderWrapper>
 	)
 }
-
-export default Loader

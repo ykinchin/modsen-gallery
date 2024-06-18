@@ -1,10 +1,10 @@
 import { baseTheme } from '@styles/theme'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const LogoWrapper = styled.div`
 	display: flex;
 	align-items: end;
-	font-size: 18px;
+	font-size: ${baseTheme.fontSize.s};
 `
 
 const LogoText = styled.p`

@@ -1,7 +1,8 @@
-import styled from 'styled-components'
+import { baseTheme } from '@styles/theme'
+import { styled } from 'styled-components'
 
 export const Tab = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 4px;
+	gap: ${baseTheme.gap.xs};
 `

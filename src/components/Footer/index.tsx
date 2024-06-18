@@ -1,11 +1,11 @@
 import Modsen from '@assets/modsen.png'
-import AppLogo from '@components/AppLogo'
+import { AppLogo } from '@components/appLogo'
 import { FooterWrapper } from './styled'
 
-const Footer = () => {
+export const Footer = () => {
 	return (
 		<FooterWrapper>
-			<AppLogo />
+			<AppLogo withText />
 			<img
 				src={Modsen}
 				alt='Modsen'
@@ -13,5 +13,3 @@ const Footer = () => {
 		</FooterWrapper>
 	)
 }
-
-export default Footer

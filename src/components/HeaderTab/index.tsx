@@ -6,11 +6,15 @@ type Props = {
 	tabIcon?: ReactNode
 	tabText: string
 	path: string
+	onClick?: () => void
 }
 
-const HeaderTab = ({ tabText, tabIcon, path }: Props) => {
+export const HeaderTab = ({ tabText, tabIcon, path, onClick }: Props) => {
 	return (
-		<NavLink to={path}>
+		<NavLink
+			to={path}
+			onClick={onClick}
+		>
 			<Tab>
 				{tabIcon}
 				{tabText}
@@ -18,5 +22,3 @@ const HeaderTab = ({ tabText, tabIcon, path }: Props) => {
 		</NavLink>
 	)
 }
-
-export default HeaderTab

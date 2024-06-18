@@ -1,5 +1,5 @@
 import { baseTheme } from '@styles/theme'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 type Props = {
 	$hovered: boolean
@@ -7,18 +7,18 @@ type Props = {
 
 const ItemWrapper = styled.div`
 	cursor: pointer;
-	width: 100%;
+	width: ${baseTheme.width.full};
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 16px 13px;
 	background-color: white;
-	gap: 16px;
+	gap: ${baseTheme.gap.normal};
 `
 
 const FlexContainer = styled.div`
 	display: flex;
-	gap: 16px;
+	gap: ${baseTheme.gap.normal};
 `
 
 const ImageContainer = styled.div`
@@ -28,7 +28,7 @@ const ImageContainer = styled.div`
 `
 
 const Images = styled.img<Props>`
-	width: 100%;
+	width: ${baseTheme.width.full};
 	height: 100%;
 	background-size: cover;
 	background-position: center;
@@ -39,7 +39,7 @@ const Images = styled.img<Props>`
 `
 
 const LogoContainer = styled.div<Props>`
-	width: 100%;
+	width: ${baseTheme.width.full};
 	height: 100%;
 	position: absolute;
 	top: 0;
@@ -48,7 +48,6 @@ const LogoContainer = styled.div<Props>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(255, 255, 255, 0.9);
 	transition: transform 0.6s;
 	backface-visibility: hidden;
 	transform: ${({ $hovered }) =>
@@ -58,7 +57,7 @@ const LogoContainer = styled.div<Props>`
 const ContentContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: ${baseTheme.gap.s};
 `
 
 const TitleWrapper = styled.div`
@@ -70,13 +69,13 @@ const TitleWrapper = styled.div`
 `
 
 const Title = styled.h3`
-	font-size: 17px;
+	font-size: ${baseTheme.fontSize.xs};
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	line-height: 150%;
 	letter-spacing: -0.03em;
-	color: #393939;
+	color: ${baseTheme.colors.primary};
 	font-weight: 600;
 `
 

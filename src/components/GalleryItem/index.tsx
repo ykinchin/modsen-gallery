@@ -1,10 +1,10 @@
-import AddButton from '@components/AddButton'
-import Logo from '@components/Logo'
+import { AddButton } from '@components/addButton'
+import { AppLogo } from '@components/appLogo'
 import { Artwork } from '@sharedTypes/apiTypes'
 import { getImageUrl } from '@utils/imageUtils'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useFavorites } from 'src/context/FavoritesContext'
+import { useFavoritesContext } from 'src/context'
 import {
 	Author,
 	ContentContainer,
@@ -22,12 +22,15 @@ type Props = {
 	artwork: Artwork
 }
 
-const GalleryItem = ({ artwork }: Props) => {
+export const GalleryItem = ({ artwork }: Props) => {
+	const { id, title, artist_title, artist_display, date_end, image_id } =
+		artwork
+
 	const navigate = useNavigate()
-	const imageUrl = getImageUrl(artwork.image_id)
+	const imageUrl = useMemo(() => image_id && getImageUrl(image_id), [image_id])
 	const [hovered, setHovered] = useState(false)
 
-	const { checkIsFavorite, toggleFavorite } = useFavorites()
+	const { checkIsFavorite, toggleFavorite } = useFavoritesContext()
 
 	const handleMouseEnter = () => setHovered(true)
 	const handleMouseLeave = () => setHovered(false)
@@ -44,39 +47,41 @@ const GalleryItem = ({ artwork }: Props) => {
 		<ItemWrapper
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
-			onClick={() => navigate(`/artwork/${artwork.id}`)}
+			onClick={() => navigate(`/artwork/${id}`)}
 		>
 			<FlexContainer>
 				<ImageContainer>
-					<Images
-						src={imageUrl}
-						alt={artwork.title || 'Artwork'}
-						$hovered={hovered}
-					/>
-					<LogoContainer $hovered={hovered}>
-						<Logo />
-					</LogoContainer>
+					{imageUrl ? (
+						<>
+							<Images
+								src={imageUrl}
+								alt={title || 'Artwork'}
+								$hovered={hovered}
+							/>
+							<LogoContainer $hovered={hovered}>
+								<AppLogo />
+							</LogoContainer>
+						</>
+					) : (
+						<AppLogo />
+					)}
 				</ImageContainer>
 
 				<ContentContainer>
 					<TitleWrapper>
-						<Title>{artwork.title || 'Unknown title'}</Title>
+						<Title>{title || 'Unknown title'}</Title>
 						<Author>
-							{artwork.artist_title ||
-								artwork.artist_display ||
-								'Unknown author'}
+							{artist_title || artist_display || 'Unknown author'}
 						</Author>
 					</TitleWrapper>
-					<Description>{artwork.date_end}</Description>
+					<Description>{date_end}</Description>
 				</ContentContainer>
 			</FlexContainer>
 
 			<AddButton
-				isFavorite={checkIsFavorite(artwork.id)}
-				onClick={event => handleClick(artwork.id, event)}
+				isFavorite={checkIsFavorite(id)}
+				onClick={event => handleClick(id, event)}
 			/>
 		</ItemWrapper>
 	)
 }
-
-export default GalleryItem

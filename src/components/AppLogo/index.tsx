@@ -1,6 +1,11 @@
 import { LogoHighlight, LogoText, LogoWrapper } from './styled'
 
-const AppLogo = () => {
+type Props = {
+	isError?: boolean
+	withText?: boolean
+}
+
+export const AppLogo = ({ isError = false, withText = false }: Props) => {
 	return (
 		<LogoWrapper>
 			<svg
@@ -52,12 +57,23 @@ const AppLogo = () => {
 					strokeLinecap='round'
 					strokeLinejoin='round'
 				/>
+				{isError && (
+					<line
+						x1='0'
+						y1='0'
+						x2='64'
+						y2='63'
+						stroke='#E0A449'
+						strokeWidth='4'
+						strokeLinecap='round'
+					/>
+				)}
 			</svg>
-			<LogoText>
-				Museum of <LogoHighlight>Art</LogoHighlight>
-			</LogoText>
+			{withText && (
+				<LogoText>
+					Museum of <LogoHighlight>Art</LogoHighlight>
+				</LogoText>
+			)}
 		</LogoWrapper>
 	)
 }
-
-export default AppLogo

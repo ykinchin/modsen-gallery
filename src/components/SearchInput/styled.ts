@@ -1,5 +1,6 @@
+import { baseTheme } from '@styles/theme'
 import { Field } from 'formik'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const InputWrapper = styled.div`
 	display: flex;
@@ -7,16 +8,16 @@ const InputWrapper = styled.div`
 
 const StyledField = styled(Field)`
 	border-radius: 16px 0 0 16px;
-	background: rgba(57, 57, 57, 0.05);
+	background: ${baseTheme.colors.inputBackground};
 	border: none;
 `
 
 const SearchButton = styled.button`
 	border: none;
-	background: rgba(57, 57, 57, 0.05);
+	background: ${baseTheme.colors.inputBackground};
 	border-radius: 0 16px 16px 0;
 	cursor: pointer;
-	padding: 16px;
+	padding: ${baseTheme.padding.default};
 `
 
 export { InputWrapper, SearchButton, StyledField }
